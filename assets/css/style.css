@@ -5181,7 +5181,16 @@ footer css
   background:#111111;
   position: relative;
   z-index: 1;
+}.log2oscuro {
+  display: none;
 }
+
+.darkmode .log1blanco {
+  display: none;
+}
+
+
+
 
 .footer-widget-box {
   margin-bottom: 20px;
@@ -5877,7 +5886,7 @@ box-shadow: 0 0 5px 5px rgb(0 0 0 / 10%);
   color: #E94B28;
   position: relative;
   padding-bottom: 20px;
-  margin-bottom: 30px;
+  margin-botfootertom: 30px;
   font-size: 24px;
   z-index: 1;
 }
@@ -5893,5 +5902,12 @@ box-shadow: 0 0 5px 5px rgb(0 0 0 / 10%);
   color: white;
   font-weight: 500;
 }
-
+.darkmode .log2oscuro {
+  display: block;
+  height: 150px;
+  width: 200px;
+}
+.darkmode .log1blanco{
+display: none;
+}
 
