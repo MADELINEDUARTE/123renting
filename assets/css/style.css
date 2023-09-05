@@ -4057,9 +4057,11 @@ car single css
 ====================== */
 
 .car-single-wrapper{
+  background-color: #1B1A1A;
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0 0 40px 5px rgb(0 0 0 / 5%);
+  border:#E94B28 solid 1px;
 }
 
 .car-single-slider img{
@@ -4097,6 +4099,7 @@ car single css
 }
 
 .car-single-terms-list li{
+  color: white;
   margin-bottom: 5px;
 }
 
@@ -4134,6 +4137,7 @@ car single css
 
 .car-single-desc{
   padding-top: 40px;
+ 
 }
 
 .car-single-additional-info{
@@ -4150,6 +4154,7 @@ car single css
 
 .car-single-details .nav-tabs{
   border-width: 2px;
+ 
 }
 
 .car-single-details .nav-tabs .nav-link {
@@ -4890,6 +4895,7 @@ user profile css
 
 .car-table table{
   vertical-align: middle;
+ 
 }
 
 .car-table .table>:not(caption)>*>*{
@@ -4924,13 +4930,13 @@ user profile css
 }
 
 .transaction .car-table-btn{
-  border-color: #4F5DEC;
-  color: #4F5DEC;
+  border-color: #EC3323;
+  color: #EC3323;
   line-height: 27px;
 }
 
 .transaction .car-table-btn:hover{
-  background: #4F5DEC;
+  background: #EC3323;
   color: #fff;
 }
 
@@ -4957,14 +4963,184 @@ user profile css
   width: unset;
 }
 
-
+.table .table-light{
+  columns: 4;
+}
 
 @media all and (max-width: 767px) {
   .car-table-name {
     flex-direction: column;
   }
 }
+/* Estilo para la tabla */
 
+th.color1a {
+  font-size: 18px;
+  font-family: 'Raleway',
+    sans-serif;
+  color: #ffffff;
+  padding: 15px 10px;
+  border-radius: 10px;
+  font-weight: 400;
+  text-align: center;
+  background: #00B982;
+  box-shadow: 0 3px 24px rgb(0 0 0 / 10%);
+  z-index: 1;
+  height:50px;
+  width: 250px;
+  margin: 0px 60px;
+}
+
+th.color1 {
+
+  font-size: 16px;
+  font-family: 'Raleway',
+    sans-serif;
+  color: #ffffff;
+  padding: 15px 10px;
+  transition: all 0.5s;
+  text-transform: capitalize;
+  position: relative;
+  border-radius: 10px 0px 0px 10px;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: center;
+  overflow: hidden;
+  border: none;
+  background: #00B982;
+  box-shadow: 0 3px 24px rgb(0 0 0 / 10%);
+  z-index: 1;
+  height: 50px;
+  width: 250px;
+  margin: 10px 0px;
+}
+th.color2 {
+
+  font-size: 16px;
+  font-family: 'Raleway',
+    sans-serif;
+  color: #ffffff;
+  padding: 15px 10px;
+  transition: all 0.5s;
+  text-transform: capitalize;
+  position: relative;
+  border-radius: 0px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  overflow: hidden;
+  border: none;
+  background: #FF3300;
+  box-shadow: 0 3px 24px rgb(0 0 0 / 10%);
+  z-index: 1;
+  height: 50px;
+  width: 250px;
+  margin: 10px 5px;
+}
+th.color3 {
+
+  font-size: 16px;
+  font-family: 'Raleway',
+    sans-serif;
+  color: #ffffff;
+  padding: 15px 10px;
+  transition: all 0.5s;
+  text-transform: capitalize;
+  position: relative;
+  border-radius: 0px 10px 10px 0px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  overflow: hidden;
+  border: none;
+  background: #FF9900;
+  box-shadow: 0 3px 24px rgb(0 0 0 / 10%);
+  z-index: 1;
+  height: 50px;
+  width: 250px;
+  margin: 10px 0px;
+}
+td{
+  text-align: center;
+  color: #ffffff;
+}
+th{
+  color: white;
+}
+
+td.color1{
+  color: #00B982;
+  font-size: 18px;
+}
+td.color2 {
+  color: #FF3300;
+  font-size: 18px;
+}
+td.color3 {
+  color: #FF9900;
+  font-size: 18px;
+}
+td.coloru {
+ color: #E94B28;
+  font-size: 18px;
+}
+.totalpagar{
+  text-align: center;
+  gap: 20px;
+  columns: 2;
+}
+
+.btn-pagar {
+  width: 60px;
+  color: white;
+  border: solid 1px #00B982;
+  background: none;
+  border-radius: 5px;
+  font-weight: bold;
+ 
+}
+.btn-pagar:active{
+  color: white;
+  background: #00B982;
+  
+}
+.btn-pagar2 {
+  width: 60px;
+  color: white;
+  border: solid 1px #FF3300;
+  background: none;
+  border-radius: 5px;
+  font-weight: bold;
+
+}
+
+.btn-pagar2:active {
+  color: white;
+  background: #FF3300;
+
+}
+.btn-pagar3 {
+  width: 60px;
+  color: white;
+  border: solid 1px #FF9900;
+  background: none;
+  border-radius: 5px;
+  font-weight: bold;
+
+}
+
+.btn-pagar3:active {
+  color: white;
+  background: #FF9900;
+
+}
+
+
+
+/* Estilo para las filas al pasar el cursor */
+.styled-table tbody tr:hover {
+  background-color: #e0e0e0;
+}
 
 
 /* ===================
@@ -5910,4 +6086,30 @@ box-shadow: 0 0 5px 5px rgb(0 0 0 / 10%);
 .darkmode .log1blanco{
 display: none;
 }
-
+.darkmode .car-single-wrapper {
+  background-color: white;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 40px 5px rgb(0 0 0 / 5%);
+  border: #E94B28 solid 1px;
+}
+.darkmode .car-single-terms-list li {
+  color: black;
+  margin-bottom: 5px;
+}
+ 
+.darkmode td {
+  color: black;
+}
+.darkmode .btn-pagar, .darkmode .btn-pagar2 , .darkmode .btn-pagar3 {
+  color: black;
+}
+.darkmode th {
+  color: black;
+}
+.darkmode th.color1a{
+  color: white;
+}
+.darkmode .color1, .darkmode .color2, .darkmode .color3{
+  color: white;
+}
