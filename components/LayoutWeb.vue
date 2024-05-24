@@ -5,15 +5,102 @@
         <div></div>
     </div>
 </div>
+
 <AppHeader />
-   <slot /> 
+<slot /> 
+
 <AppFooter />
 <!-- scroll-top -->
 <a href="#" id="scroll-top"><i class="far fa-arrow-up"></i></a>
 </template>
-<script setup >
+<script setup  >
+    
+    import { reactive, ref, onMounted } from 'vue'
+
+    async function  getToken(event){
+        try {
+            const { data } =  await useFetch('/api/token')
+
+            if (data.value) {
+                // console.log('Token actualizado o recuperado:', tokenInfo);
+            } else {
+                console.error('No se pudo obtener el token.');
+            }
+            return true 
+        } catch (error) {
+            console.error('Error en el manejador de eventos:', error);
+            return null;
+        }
+    };
+
+    async function getParametros(event){
+        try {
+            const { data } =  await useFetch('/api/parameters')
+            if (data.value) {
+                const parametros = reactive(data.value)
+                return parametros 
+            } else {
+                console.error('No se pudo obtener el token.');
+            }
+        } catch (error) {
+            console.error('Error en el manejador de eventos:', error);
+            return null;
+        }
+    };
+
+    async function getLocations(event){
+        try {
+            const { data } =  await useFetch('/api/locations')
+            if (data.value) {
+                return data.value 
+            } else {
+                console.error('No se pudo obtener el token.');
+            }
+        } catch (error) {
+            console.error('Error en el manejador de eventos:', error);
+            return null;
+        }
+    };
+
+    async function getVehicles(){
+        try {
+            const { data } =  await useFetch('/api/vehicles')
+            if (data.value) {
+                return data.value 
+            } else {
+                console.error('No se pudo obtener el token.');
+            }
+        } catch (error) {
+            console.error('Error en el manejador de eventos:', error);
+            return null;
+        }
+    };
+    
+    const parametros = ref()
+    
+    onMounted(async ()=>{
+        
+        await getToken()
+
+        parametros.value = await getParametros()
+
+        const locationsApi = await getLocations()
+
+        const { locations } = useLocation()
+        
+        locations.setLocations(locationsApi)
+
+        const vehiclesApi = await getVehicles()
+
+        const { vehicles } = useVehicle()
+
+        vehicles.setData(vehiclesApi)
+
+    })
 
     onNuxtReady(async () => {
+
+        
         (function ($) {
             "use strict";
 
@@ -93,7 +180,25 @@
 
 
         })(jQuery);
+
+
+
+        // const  { data, pending, error, refresh } = await useLazyFetch('https://dev.api.123renting.es/api/home_frontend', {
+        //     query: { 
+        //         idioma: 1,
+        //         idregion: 1,
+        //         cantidad: 4
+        //     }
+        // })
+
+        // const beneficios = data.value.data.beneficios
+
+        // const { mejoras } = useMejoras()
+
+        // mejoras.data = reactive(beneficios)
         // do something with myAnalyticsLibrary
     })
+
+    
 
 </script>

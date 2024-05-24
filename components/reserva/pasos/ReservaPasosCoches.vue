@@ -10,23 +10,22 @@
 
             <i class="far fa-car"></i>
         </div>
-            
+
         <div class="col-12 coches pt-4" >
-            <!-- <p>{{ cocheSeleccionado }}</p> -->
-            <!-- <p>Cargando...</p> -->
             <div class="row" v-show="!cocheSeleccionado">
                 <div 
                     v-for="(coche, key) in filteredData" 
                     :key="`coche-${key}`" 
                     class="col-12 col-sm-4"
                 >
-                    <BoxCoche :coche="coche" @selectCoche="selectCoche" v-model:plan_id="plan_id" />
+
+                    <BoxCoche :coche="coche" :vehicles_currency="vehiclesCurrency" @selectCoche="selectCoche" v-model:plan_id="precio_id" />
                 </div> 
             </div>
            
             <div class="col-12" v-show="cocheSeleccionado">
                 
-                <BoxCoche :coche="cocheSeleccionado" @selectCoche="selectCoche"  v-model:plan_id="plan_id" />
+                <BoxCoche :coche="cocheSeleccionado" @selectCoche="selectCoche"  :vehicles_currency="vehiclesCurrency" v-model:plan_id="precio_id" />
                 <div @click="reset" class="w-100 d-flex justify-content-end" style="cursor: pointer;">
                     <i class="fa fa-rotate mx-2" style="color: white"></i>
                     <p class="m-0">{{$t('cambio_coche')}}</p>
@@ -39,11 +38,13 @@
 </template>
 
 <script setup lang="ts">
-    import type { Coche } from '~/composables/useCoche'
 
-    const cocheSeleccionado = ref<Coche>()
-    const plan_id = defineModel<Number>('plan_id',{ default: 0 })
-    const coche_id = defineModel('coche_id')
+    const { vehicles } = useReserva()
+    import type { Vehicle } from '~/composables/useVehicle'
+
+    const cocheSeleccionado = ref<Vehicle>()
+    const precio_id = defineModel<Number>('price_id',{ default: 0 })
+    const vehicle_id = defineModel('vehicle_id')
 
     onMounted(()=>{
         reset()
@@ -51,7 +52,6 @@
 
     const props = defineProps({
         status_open: Boolean,
-        coches: Array<Coche>,
         textos:{
             type: Object,
             default(){
@@ -68,29 +68,42 @@
 
     const filteredData = computed(() => {
         if (!filters.value) {
-            return props.coches
+            return vehicles.data.result.vehicles
         } else {
-            return props.coches?.filter((item) => {
+            return vehicles.data.result.vehicles?.filter((item) => {
                 return (
-                    item.marca.match(new RegExp(filters.value, 'i')) ||
-                    item.modelo.match(new RegExp(filters.value, 'i'))
+                    item.model_details.name.match(new RegExp(filters.value, 'i')) ||
+                    item.model_details.model.match(new RegExp(filters.value, 'i'))
                 )
             })
         }
     })
 
-    const selectCoche = ({ coche, plan }: { coche: Coche, plan: number } ) => {
-       
+    const vehiclesCurrency = computed(()=>{
+        return vehicles.data.result.common.currency
+    })
+
+    const selectCoche = ({ coche_id, price_id }: { coche_id:number, price_id:number } ) => {
+        scrollToBottomOfElement()
+        const coche = vehicles.data.result.vehicles.find( (vehicle: Vehicle) => vehicle.model_id == coche_id )
         cocheSeleccionado.value = coche
-        coche_id.value = coche.id
-        filters.value = coche.marca + ' '+ coche.modelo
+        vehicle_id.value = coche?.model_id
+        filters.value = coche?.model_details.name || ''
     }
 
     const reset = () => {
         filters.value = ''
-        plan_id.value = 0
-        coche_id.value = ''
+        precio_id.value = 0
+        vehicle_id.value = ''
         cocheSeleccionado.value = undefined
     }
+
+    const scrollToBottomOfElement = () =>  {
+            const element = document.querySelector('.fullscreen');
+            element?.scrollTo({
+                top: element.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
 
 </script>

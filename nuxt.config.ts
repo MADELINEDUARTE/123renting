@@ -1,5 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  runtimeConfig: {
+    secretToken: process.env.SECRET_TOKEN,
+    urlApi: 'https://123rentingespana.renthubsoftware.com'
+  },
+  devServer: {
+      host: '0.0.0.0',
+      port: 3000
+  },
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/i18n',

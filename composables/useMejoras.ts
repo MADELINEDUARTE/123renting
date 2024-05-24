@@ -7,7 +7,6 @@ export interface Mejora {
     medium: number;
     precio: number;
     premium: number;
-    updated_at: string;
   }
   
   

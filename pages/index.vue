@@ -88,22 +88,26 @@
                     <div class="heading-divider"></div>
                 </div>
             </div>
+            
               <div class="feature-wrapper">
-                <div class="row">
-                    <div class="col-md-6 col-lg-4">
+                <div class="row" v-if="locations.data.length">
+                    <div
+                        v-for="(item,key) in locations.data" 
+                        :key="`location-${key}`"
+                        class="col-md-6 col-lg-4">
                         <div class="feature-item">
-                          <a href="#"> 
+                          <a :href="`https://www.google.com/maps?q=${item.latitude},${item.longitude}`" target="_blank"> 
                             <div class="testimonial-quote-icon">
                                 <img src="/assets/img/icon/location.svg" alt=""/>
                             </div>
                             <div class="feature-content">
-                                <h4>{{$t('direccion1')}}</h4>
-                                <p>{{$t('avenida1')}}</p>
+                                <h4>{{ item.name }}</h4>
+                                <p>{{ item.complete_address }}</p>
                             </div>
                           </a>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    <!-- <div class="col-md-6 col-lg-4">
                         <div class="feature-item">
                             <a href="#">
                               <div class="testimonial-quote-icon">
@@ -128,10 +132,10 @@
                               </div>
                             </a>
                         </div>
-                    </div>
-                    <div class="text-center mt-4">
+                    </div> -->
+                    <!-- <div class="text-center mt-4">
                         <a href="#" class="theme-btn"> <strong>{{$t('b_ver_mas')}}</strong> <i class="far fa-arrow-rotate-right"></i> </a>
-                    </div>
+                    </div> -->
                 </div>
              </div>
           </div>
@@ -189,126 +193,9 @@
     </div>
     <!-- about area end -->
 
-
-
     <!-- car area -->
-    <div class="car-area bg py-120" id="flota">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    <div class="site-heading text-center">
-                        <span class="site-title-tagline">{{$t('quieres')}}</span>
-                        <h2 class="site-title">{{$t('nuestra')}} <span>{{$t('flota')}}</span></h2>
-                        <div class="heading-divider"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-xl-4">
-                    <div class="car-item">
-                        <div class="car-content">
-                            <div class="car-top">
-                                <h4><a class="letrac" href="#">{{$t('nombre_coche1')}} <br>
-                                <h6 class="modelo">{{$t('nombre_coche2')}}</h6></a></h4>
-                                <br>
-                        
-                                <!--<span><i class="fas fa-star"></i> 5.0</span>-->
-                            </div>
-                        <div class="car-img">
-                            <img src="/assets/img/car/01.png" alt="">
-                        </div>
-                        
-                            <ul class="car-list">
-                                <li><img src="/assets/img/car/euro.png" class="far fa-car">{{$t('precio_d')}}&nbsp;&nbsp;</li>
-                                <li><img src="/assets/img/car/pasajeros.png"  class="far fa-user-tie">{{$t('personas')}}&nbsp;</li>
-                                <li><img src="/assets/img/car/puerta.png" class="far fa-gas-pump">&nbsp;&nbsp;&nbsp;{{$t('puertas')}}&nbsp;&nbsp;</li>
-                               <!-- <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li>-->
-                            </ul>
-                            <div class="car-footer">
-                                <!--<span class="car-price">$390 <sub>/ month</sub></span>
-                                <a href="#" class="car-favorite-btn"><i class="far fa-heart"></i></a>-->
-                                <a href="#" class="theme-btn1"><strong>{{$t('basic')}}</strong></a>
-                                <a href="#" class="theme-btn2"><strong>{{$t('medio')}}</strong></a>
-                                <a href="#" class="theme-btn3"><strong>{{$t('primium')}}</strong></a>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-
-                <div class="col-lg-6 col-xl-4">
-                    <div class="car-item">
-                        <div class="car-content">
-                            <div class="car-top">
-                                <h4><a class="letrac" href="#">{{$t('nombre_coche1')}} <br>
-                                <h6 class="modelo">{{$t('nombre_coche2')}}</h6></a></h4>
-                                <br>
-                        
-                                <!--<span><i class="fas fa-star"></i> 5.0</span>-->
-                            </div>
-                        <div class="car-img">
-                            <img src="/assets/img/car/01.png" alt="">
-                        </div>
-                        
-                            <ul class="car-list">
-                                <li><img src="/assets/img/car/euro.png" class="far fa-car">{{$t('precio_d')}}&nbsp;&nbsp;</li>
-                                <li><img src="/assets/img/car/pasajeros.png"  class="far fa-user-tie">{{$t('personas')}}&nbsp;</li>
-                                <li><img src="/assets/img/car/puerta.png" class="far fa-gas-pump">&nbsp;&nbsp;&nbsp;{{$t('puertas')}}&nbsp;&nbsp;</li>
-                               <!-- <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li>-->
-                            </ul>
-                            <div class="car-footer">
-                                <!--<span class="car-price">$390 <sub>/ month</sub></span>
-                                <a href="#" class="car-favorite-btn"><i class="far fa-heart"></i></a>-->
-                                <a href="#" class="theme-btn1"><strong>{{$t('basic')}}</strong></a>
-                                <a href="#" class="theme-btn2"><strong>{{$t('medio')}}</strong></a>
-                                <a href="#" class="theme-btn3"><strong>{{$t('primium')}}</strong></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-xl-4">
-                    <div class="car-item">
-                        <div class="car-content">
-                            <div class="car-top">
-                                <h4><a class="letrac" href="#">{{$t('nombre_coche1')}} <br>
-                                <h6 class="modelo">{{$t('nombre_coche2')}}</h6></a></h4>
-                                <br>
-                        
-                                <!--<span><i class="fas fa-star"></i> 5.0</span>-->
-                            </div>
-                        <div class="car-img">
-                            <img src="/assets/img/car/01.png" alt="">
-                        </div>
-                        
-                            <ul class="car-list">
-                                <li><img src="/assets/img/car/euro.png" class="far fa-car">{{$t('precio_d')}}&nbsp;&nbsp;</li>
-                                <li><img src="/assets/img/car/pasajeros.png"  class="far fa-user-tie">{{$t('personas')}}&nbsp;</li>
-                                <li><img src="/assets/img/car/puerta.png" class="far fa-gas-pump">&nbsp;&nbsp;&nbsp;{{$t('puertas')}}&nbsp;&nbsp;</li>
-                               <!-- <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li>-->
-                            </ul>
-                            <div class="car-footer">
-                                <!--<span class="car-price">$390 <sub>/ month</sub></span>
-                                <a href="#" class="car-favorite-btn"><i class="far fa-heart"></i></a>-->
-                                <a href="#" class="theme-btn1"><strong>{{$t('basic')}}</strong></a>
-                                <a href="#" class="theme-btn2"><strong>{{$t('medio')}}</strong></a>
-                                <a href="#" class="theme-btn3"><strong>{{$t('primium')}}</strong></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            <div class="text-center mt-4">
-                <a href="#" class="theme-btn"> <strong>{{$t('ver_furgos')}}</strong>  <i class="far fa-arrow-rotate-right"></i> </a>
-            </div>
-        </div>
-    </div>
-    </div>
+    <flotaHome />
     <!-- car area end -->
-
-
 
     <!-- process-area -->
     <div class="process-area pt-120 pb-80">
@@ -367,8 +254,6 @@
         </div>
     </div>
     <!-- process-area end -->
-
-
 
     <!-- choose-area -->
     <!--<div class="choose-area">
@@ -431,8 +316,6 @@
         </div>
     </div>-->
     <!-- choose-area end -->
-
-
 
     <!-- faq area -->
     <div class="faq-area py-120">
@@ -533,8 +416,6 @@
         </div>
     </div>
     <!-- faq area end -->
-
-
 
     <!-- testimonial-area -->
     <div class="testimonial-area py-120">
@@ -695,17 +576,18 @@
     </div>
     <!-- testimonial-area end -->
 
-
-
     <!-- partner area -->
     <br>
     <div class="partner-area bg pt-50 pb-50">
         <div class="container">
             <div class="partner-wrapper partner-slider owl-carousel owl-theme">
-                <img src="/assets/img/partner/01.png" alt="thumb">
-                <img src="/assets/img/partner/02.png" alt="thumb">
-                <img src="/assets/img/partner/03.png" alt="thumb">
-                <img src="/assets/img/partner/04.png" alt="thumb">
+                <img src="/assets/img/partner/01.png" style="width: 100%" alt="123coche">
+                <img src="/assets/img/partner/02.png" style="width: 100%" alt="123coche">
+                <img src="/assets/img/partner/04.png" style="width: 100%" alt="urbane">
+                <img src="/assets/img/partner/03.png" style="width: 100%" alt="camper">
+                
+                
+                
                 <!--<img src="/assets/img/partner/01.png" alt="thumb">
                 <img src="/assets/img/partner/02.png" alt="thumb">
                 <img src="/assets/img/partner/01.png" alt="thumb">-->
@@ -714,10 +596,8 @@
     </div>
     <!-- partner area end -->
 
-
-
     <!-- blog-area -->
-<!-- <div class="blog-area py-120">
+    <!-- <div class="blog-area py-120">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mx-auto">
@@ -795,145 +675,155 @@
 </main>
 </LayoutWeb>
 </template>
-<script>
-onNuxtReady(async () => {
-    (function ($) {
-        "use strict";
+<script setup>
+import flotaHome from './../components/home/flotaHome.vue'
+    import { reactive, ref, onMounted } from 'vue'
 
-       
-        // partner-slider
-        $('.partner-slider').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 6
+    const { locations } = useLocation()
+
+    
+
+
+    onNuxtReady(async () => {
+        (function ($) {
+            "use strict";
+
+        
+            // partner-slider
+            $('.partner-slider').owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: false,
+                dots: false,
+                autoplay: true,
+                responsive: {
+                    0: {
+                        items: 2
+                    },
+                    600: {
+                        items: 3
+                    },
+                    1000: {
+                        items: 4
+                    }
                 }
-            }
-        });
+            });
 
 
-        // testimonial-slider
-        $('.testimonial-slider').owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: true,
-            autoplay: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 2
-                },
-                1000: {
-                    items: 4
+            // testimonial-slider
+            $('.testimonial-slider').owlCarousel({
+                loop: true,
+                margin: 30,
+                nav: false,
+                dots: true,
+                autoplay: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 4 
+                    }
                 }
-            }
-        });
+            });
 
 
-        // car-single-slider
-        $('.car-single-slider').owlCarousel({
-            loop: true,
-            margin: 20,
-            nav: true,
-            dots: false,
-            navText: [
-                "<i class='fal fa-long-arrow-left'></i>",
-                "<i class='fal fa-long-arrow-right'></i>"
-            ],
-            autoplay: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 1
-                },
-                1000: {
-                    items: 1
+            // car-single-slider
+            $('.car-single-slider').owlCarousel({
+                loop: true,
+                margin: 20,
+                nav: true,
+                dots: false,
+                navText: [
+                    "<i class='fal fa-long-arrow-left'></i>",
+                    "<i class='fal fa-long-arrow-right'></i>"
+                ],
+                autoplay: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 1
+                    },
+                    1000: {
+                        items: 1
+                    }
                 }
-            }
-        });
+            });
 
 
-        // // fun fact counter
-        // $('.counter').countTo();
-        // $('.counter-box').appear(function () {
-        //     $('.counter').countTo();
-        // }, {
-        //     accY: -100
-        // });
+            // // fun fact counter
+            // $('.counter').countTo();
+            // $('.counter-box').appear(function () {
+            //     $('.counter').countTo();
+            // }, {
+            //     accY: -100
+            // });
 
+
+                /**
+                 * TODO donde se usa esto
+                 */
+            // magnific popup init
+            // $(".popup-gallery").magnificPopup({
+            //     delegate: '.popup-img',
+            //     type: 'image',
+            //     gallery: {
+            //         enabled: true
+            //     },
+            // });
+
+            // $(".popup-youtube, .popup-vimeo, .popup-gmaps").magnificPopup({
+            //     type: "iframe",
+            //     mainClass: "mfp-fade",
+            //     removalDelay: 160,
+            //     preloader: false,
+            //     fixedContentPos: false
+            // });
+
+            // // countdown
+            // if ($('#countdown').length) {
+            //     $('#countdown').countdown('2030/01/30', function (event) {
+            //         $(this).html(event.strftime('' + '<div class="row">' + '<div class="col countdown-single">' + '<h2 class="mb-0">%-D</h2>' + '<h5 class="mb-0">Day%!d</h5>' + '</div>' + '<div class="col countdown-single">' + '<h2 class="mb-0">%H</h2>' + '<h5 class="mb-0">Hours</h5>' + '</div>' + '<div class="col countdown-single">' + '<h2 class="mb-0">%M</h2>' + '<h5 class="mb-0">Minutes</h5>' + '</div>' + '<div class="col countdown-single">' + '<h2 class="mb-0">%S</h2>' + '<h5 class="mb-0">Seconds</h5>' + '</div>' + '</div>'));
+            //     });
+            // }
 
             /**
-             * TODO donde se usa esto
+             * TODO este se usa?
              */
-        // magnific popup init
-        // $(".popup-gallery").magnificPopup({
-        //     delegate: '.popup-img',
-        //     type: 'image',
-        //     gallery: {
-        //         enabled: true
-        //     },
-        // });
+            // // copywrite date
+            // let date = new Date().getFullYear();
+            // $("#date").html(date);
 
-        // $(".popup-youtube, .popup-vimeo, .popup-gmaps").magnificPopup({
-        //     type: "iframe",
-        //     mainClass: "mfp-fade",
-        //     removalDelay: 160,
-        //     preloader: false,
-        //     fixedContentPos: false
-        // });
+            // find-car date picker 
+            // if ($('.date-picker').length) {
+            //     $(function () {
+            //         $(".date-picker").datepicker();
+            //     });
+            // }
 
-        // // countdown
-        // if ($('#countdown').length) {
-        //     $('#countdown').countdown('2030/01/30', function (event) {
-        //         $(this).html(event.strftime('' + '<div class="row">' + '<div class="col countdown-single">' + '<h2 class="mb-0">%-D</h2>' + '<h5 class="mb-0">Day%!d</h5>' + '</div>' + '<div class="col countdown-single">' + '<h2 class="mb-0">%H</h2>' + '<h5 class="mb-0">Hours</h5>' + '</div>' + '<div class="col countdown-single">' + '<h2 class="mb-0">%M</h2>' + '<h5 class="mb-0">Minutes</h5>' + '</div>' + '<div class="col countdown-single">' + '<h2 class="mb-0">%S</h2>' + '<h5 class="mb-0">Seconds</h5>' + '</div>' + '</div>'));
-        //     });
-        // }
+            // // find-car time picker 
+            // if ($('.time-picker').length) {
+            //     $(function () {
+            //         $(".time-picker").timepicker();
+            //     });
+            // }
 
-        /**
-         * TODO este se usa?
-         */
-        // // copywrite date
-        // let date = new Date().getFullYear();
-        // $("#date").html(date);
-
-        // find-car date picker 
-        // if ($('.date-picker').length) {
-        //     $(function () {
-        //         $(".date-picker").datepicker();
-        //     });
-        // }
-
-        // // find-car time picker 
-        // if ($('.time-picker').length) {
-        //     $(function () {
-        //         $(".time-picker").timepicker();
-        //     });
-        // }
-
-        // // profile image btn
-        // $(".profile-img-btn").click(function () {
-        //     $(".profile-img-file").click(); 
-        // });
+            // // profile image btn
+            // $(".profile-img-btn").click(function () {
+            //     $(".profile-img-file").click(); 
+            // });
 
 
-    })(jQuery);
-    // do something with myAnalyticsLibrary
-  })
+        })(jQuery);
+        // do something with myAnalyticsLibrary
+    })
+
+    
 // $(document).ready(function() {
  
 //  $(".owl-carousel").owlCarousel();

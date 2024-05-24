@@ -1,44 +1,51 @@
 <template>
-    <div class="row flex-column-reverse p-0 m-0">
+    <div class="row flex-column-revers p-0 m-0">
         <div class="car-item-single col-12">
             <p class="" style="font-size: 12px" ><span style="font-size: 18px; font-weight: 900; color: #E94B28">{{ textos.number }}</span> {{ textos.text }}</p>
             <div class="car-single-wrapper m-0 p-0" style="border-color: #464646">
-                <div class="w-100 text-center p-2 " :style="{ backgroundColor: plan?.backgroundColor }" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                <!-- <p>{{ precio }}</p> -->
+<!-- <p>{{ coche }}</p> -->
+<!-- <p>{{ reserva_devolucion }}</p> -->
+                <!-- <div class="w-100 text-center p-2 " :style="{ backgroundColor: plan?.backgroundColor }" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
                     <p><strong>{{ plan?.nombre }}</strong></p>
-                </div>
+                </div> -->
            
                 <div class="p-3">
                     <table class="table caption-top">
                         <tbody>
                             <tr>
-                                <th>{{$t('tarifa_plan')}}</th>
-                                <td style="text-align: right;"><strong>{{ reserva.invoice.plan.amount }}{{$t('moneda')}} x {{ reserva.invoice.plan.dias }} día {{ reserva.invoice.plan.dias > 1 ? 's':'' }} </strong></td>   
+                                <th>{{$t('Tarifa')}}</th>
+                                <td style="text-align: right;"><strong> {{ precio?.fee_on_pricelist_type.without_tax }} {{ currency?.symbol }} / {{ $t(precio?.fee_on_pricelist_type.type || '') }} x {{ precio?.price_referred_to }}</strong></td>   
                             </tr>
                             <tr>
                                 <th>{{$t('sub_total')}}</th>    
-                                <td style="text-align: right;"><strong>{{ reserva.invoice.subtotal }}€</strong></td>
-                            </tr>
-                            <tr v-for="(item, key) in reserva.mejoras" :key="`mejora-${key}`">
-                                <th>{{ item.descripcion }}</th>    
-                                <td style="text-align: right;"><strong>{{ item.precio }}€</strong></td>
+                                <td style="text-align: right;"><strong>{{ precio?.rent_rate_discount_included.without_tax }} {{ currency?.symbol }}</strong></td>
                             </tr>
                             <tr>
-                                <th>{{$t('total_pagar')}}  {{ reserva.invoice.plan.dias }} día {{ reserva.invoice.plan.dias > 1 ? 's':'' }}</th>
-                                <td style="text-align: right; font-size: 20px;"><strong>{{ reserva.invoice.total }}€</strong></td>
+                                <th>{{$t('IVA')}}</th>    
+                                <td style="text-align: right;"><strong>{{ precio?.rent_rate_discount_included.tax }} {{ currency?.symbol }}</strong></td>
+                            </tr>
+                            <!-- <tr v-for="(item, key) in reserva.mejoras" :key="`mejora-${key}`">
+                                <th>{{ item.descripcion }}</th>    
+                                <td style="text-align: right;"><strong>{{ item.precio }}€</strong></td>
+                            </tr> -->
+                            <tr>
+                                <th>{{$t('Total')}}  </th>
+                                <td style="text-align: right; font-size: 20px;"><strong>{{ precio?.rent_rate_discount_included.with_tax }} {{ currency?.symbol }}</strong></td>
 
                             </tr>
                                             
                         </tbody>
                     </table>
-                    
-
                 </div> 
                 
             </div>
-            <ul id="inline-popupss"><li class="text-right mt-3"><a href="#test-popup" data-effect="mfp-zoom-in" class="btn btn-success w-auto py-2">Confirmar</a></li></ul>
+
+            
+       
         </div>
         
-        <div class="col-12">
+        <!-- <div class="col-12">
 
             <p class="m-0" style="font-size: 12px" ><span style="font-size: 18px; font-weight: 900; color: #E94B28">5.</span> Mejora tu reserva</p>
             
@@ -94,65 +101,19 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script setup lang="ts">
 
-    import type { Calculo } from '~/composables/useReserva'
-
-    import type { Mejora } from '~/composables/useMejoras'
-
-    const { mejoras } = useMejoras()
-
-    const { reserva } = useReserva()
-
-
-    onMounted(()=>{
-        // $('.owl-carousell')
-        // const carousel = document.querySelector('.owl-carousell')
-        
-        $('.owl-carousell').owlCarousel({
-            items: 4,
-            loop:true,
-            autoWidth:true,
-            margin:5,
-            merge:true,
-            nav:true,
-            autoplay:true,
-            autoplayTimeout:3000,
-            autoplayHoverPause:true,
-            // responsive:{
-            //     678:{
-            //         mergeFit:true
-            //     },
-            //     1000:{
-            //         mergeFit:true
-            //     }
-            // }
-        });
-
-        setTimeout(()=>{
-                $('#inline-popupss').magnificPopup({
-                    delegate: 'a',
-                    removalDelay: 500, //delay removal by X to allow out-animation
-                    callbacks: {
-                        beforeOpen: function() {
-                            this.st.mainClass = this.st.el.attr('data-effect');
-                        }
-                    },
-                    midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
-                });
-        
-            },1000)
-    })
-   
+    import type { Vehicle, Currency } from '~/composables/useVehicle'
 
     const props = defineProps({
         plan_id: Number,
-        coche: Object,
+        coche: Object as () => Vehicle,
         reserva_devolucion: Object,
+        currency: Object as () => Currency,
         textos:{
             type: Object,
             default(){
@@ -164,97 +125,77 @@
         },
     })
 
-    const { planes } = usePlan()
-
-    const plan = computed(()=>{
-        return planes.data.find( e => e.id == plan_id.value )
-    })
-
     const precio = computed(()=>{
-
-        const clave = plan.value?.key || ''
-
-        let precio = null
-        switch (clave) {
-            case 'basico':
-                precio = props.coche?.config.basico 
-                break;
-            case 'medio':
-                precio = props.coche?.config.medio 
-                break;
-            case 'premium':
-                precio = props.coche?.config.premium 
-                break;
-            default:
-                precio = 0
-                break;
-        }
-
-        return precio
+        return props.coche?.pricelists.find((price: Pricelist) =>  price.id == props.plan_id )
     })
 
-    const plan_id = defineModel('plan_id')
+    // import type { Calculo } from '~/composables/useReserva'
 
-    const emit = defineEmits(['selectPlan'])
+    // import type { Mejora } from '~/composables/useMejoras'
 
-    const onSelectPlan = (id: number) => {
-        plan_id.value = id
-    }
+    // const { mejoras } = useMejoras()
 
-    watch(plan_id,(to)=>{
-        reserva.mejoras = []
-        onCalcularPrecios()
+    // const { reserva } = useReserva()
+
+
+    onMounted(()=>{
+
+        // $('.open-popup-link').magnificPopup({
+        //     type:'inline',
+        //     midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+            
+        // });
+
+        // $('.owl-carousell')
+        // const carousel = document.querySelector('.owl-carousell')
+        
+        // $('.owl-carousell').owlCarousel({
+        //     items: 4,
+        //     loop:true,
+        //     autoWidth:true,
+        //     margin:5,
+        //     merge:true,
+        //     nav:true,
+        //     autoplay:true,
+        //     autoplayTimeout:3000,
+        //     autoplayHoverPause:true,
+        //     // responsive:{
+        //     //     678:{
+        //     //         mergeFit:true
+        //     //     },
+        //     //     1000:{
+        //     //         mergeFit:true
+        //     //     }
+        //     // }
+        // });
+
+        // setTimeout(()=>{
+        //         $('#inline-popupss').magnificPopup({
+        //             delegate: 'a',
+        //             removalDelay: 500, //delay removal by X to allow out-animation
+        //             callbacks: {
+        //                 beforeOpen: function() {
+        //                     this.st.mainClass = this.st.el.attr('data-effect');
+        //                 }
+        //             },
+        //             midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+        //         });
+        
+        //     },1000)
     })
-
-    
-    const onCalcularPrecios = () => {
-        const dataCalculo = reserva.getDataCalculo()
-        getCalculo(dataCalculo)
-    }
-
-    const getCalculo = async (calculo:Calculo) => {
-        console.log(calculo)
-
-        interface response {
-            data: Object,
-            status: String
-        }
-
-        const  { data, pending, error, refresh } = await useLazyFetch<response>('https://dev.api.123renting.es/api/calcular_costo', {
-            body: calculo,
-            method: 'POST'
-        })
-
-        if(data.value){
-            reserva.putInvoice(data.value?.data)
-        }
-
-        // console.log(data)
-    }
+   
 
     
 
-    const addBeneficio = (obj:any) => {
-        
-        if(obj.plan != plan.value?.id){
-            return
-        }
-
-        if(obj.incluido){
-            return
-        }
-        
-        const mejora = mejoras.data.find((element) => element.id == obj.item.id)
-        if(mejora){
-            reserva.addMejora(mejora)   
-            // onCalcularPrecios()
-        }
-
-    }
+    
+    
 
 </script>
 
 <style lang="scss">
+
+
+
 .cardPaquete{
     margin-right: 10px;
     text-align: center;
