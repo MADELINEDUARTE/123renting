@@ -18,8 +18,38 @@ export default defineNuxtConfig({
   app:{
 
     head: {
-      // Agrega la referencia al archivo CSS
+      title: '123Renting',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: '123Renting empresa con el mejor precio del mercado en alquiler de vehiculo o coches' },
+        { name: 'msapplication-TileColor', content: '#FFFFFF' },
+        // { name: 'msapplication-TileImage', content: '/favicons/ms-icon-144x144.png' },
+        // PWA primary color
+        { name: 'theme-color', content: '#E94B28'},
+        // Facebook
+        { property: 'author', content: '123renting' },
+        { property: 'og:site_name', content: '123renting' },
+        { property: 'og:locale', content: 'en_US' },
+        { property: 'og:type', content: 'website' },
+        // Twitter
+        { property: 'twitter:site', content: '123renting.ad' },
+        { property: 'twitter:domain', content: '123renting.ad' },
+        { property: 'twitter:creator', content: '123renting' },
+        { property: 'twitter:card', content: 'summary' },
+        { property: 'twitter:image:src', content: 'assets/img/logo/logoh.png' },
+        { property: 'og:url', content: '123renting.ad' },
+        { property: 'og:title', content: '123renting.ad' },
+        { property: 'og:description', content: '123renting.ad' },
+        { name: 'twitter:site', content: '123renting.ad' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:image', content: '123renting.ad' },
+        { property: 'og:image', content: 'assets/img/logo/logoh.png' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' }
+      ],
       link: [
+        { rel: 'canonical', href: 'https://123renting.ad' },
         { rel: 'stylesheet', href: '/assets/css/all-fontawesome.min.css' },
         { rel: 'stylesheet', href: '/assets/css/animate.min.css' },
         { rel: 'stylesheet', href: '/assets/css/magnific-popup.min.css' },
