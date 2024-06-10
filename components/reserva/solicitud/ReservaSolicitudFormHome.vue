@@ -118,13 +118,20 @@
     const { reserva } = useReserva()
 
     const detectDeviceType = () => {
-        const width = window.innerWidth;
-        
-        if (width <= 768) { // 768px es un punto de quiebre común para dispositivos móviles
-            return 'isMobile';
-        } else {
-            return 'isDesktop';
+        try {
+            const width = window.innerWidth;
+            if (width <= 768) { // 768px es un punto de quiebre común para dispositivos móviles
+                return 'isMobile';
+            } else {
+                return 'isDesktop';
+            }
+        } catch (error) {
+            
         }
+
+        // const width = window.innerWidth;
+        
+        
     }    
 
     //CONTROLA LA APERTURA Y EL CIERRE DEL MODAL

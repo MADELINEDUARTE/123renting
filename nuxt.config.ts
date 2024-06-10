@@ -2,7 +2,11 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     secretToken: process.env.SECRET_TOKEN,
-    urlApi: 'https://123rentingespana.renthubsoftware.com'
+    urlApi: 'https://123rentingespana.renthubsoftware.com',
+    urlApiAction: "https://dev.api.123renting.es",
+    secretTokenAction: process.env.SECRET_TOKEN_ACTION,
+    idiomaAction: 1,
+    regionAction: 1
   },
   devServer: {
       host: '0.0.0.0',
@@ -10,13 +14,13 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   modules: [
+    
     '@nuxtjs/i18n',
   ],
   i18n: {
     vueI18n: './i18n.config.ts' // if you are using custom path, default 
   },
   app:{
-
     head: {
       title: '123Renting',
       meta: [
@@ -82,5 +86,9 @@ export default defineNuxtConfig({
       { src: '/assets/js/jquery-3.6.0.min.js', ssr: false },
       // { src: '~/plugins/Vue3Lottie.client', mode: 'client' },
     ]
-  }
+  },
+  experimental: {
+    scanPageMeta: true
+  },
+  
 })

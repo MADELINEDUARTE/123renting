@@ -5,6 +5,7 @@
     // ... otras opciones ...
     "types": [
       // ... otras definiciones de tipo ...
+      
       "jquery"
     ]
   }

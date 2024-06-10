@@ -3,12 +3,15 @@
     
     <div class="hero-section">
         <div class="hero-slider owl-carousel owl-theme">
-            <div class="hero-single" style="background: url('/assets/img/slider/img_slider1.jpg')">
+            
+            <div v-for="(slide , key) in sliders" :key="`slid${key}`" class="hero-single" :style="{backgroundImage: `url(${slide.url_imagen})`}" >
+               
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-md-9 col-lg-7">
                             <div class="hero-content">
-                                <h6 class="hero-sub-title wow animate__animated animate__fadeInUp"
+                               <div v-html="slide.contenido"></div>
+                                <!-- <h6 class="hero-sub-title wow animate__animated animate__fadeInUp"
                                     data-wow-duration="1s" data-wow-delay=".25s">{{$t('reserva_ahora')}}</h6>
                                 <h1 class="hero-title wow animate__animated animate__fadeInUp"
                                     data-wow-duration="1s" data-wow-delay=".50s">
@@ -22,13 +25,13 @@
                                 </p>
                                 <div class="hero-btn wow animate__animated animate__fadeInUp" data-wow-duration="1s"
                                     data-wow-delay="1s">
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="hero-single" style="background: url('/assets/img/slider/img_slider2.jpg')">
+            <div v-if="false" class="hero-single" style="background: url('/assets/img/slider/img_slider2.jpg')">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-md-9 col-lg-7">
@@ -87,6 +90,31 @@
     <!-- hero slider end -->
 </template>
 
-<script>
 
+<script setup>
+    const { sliders } = useHome()
+
+    watch( sliders, ()=>{
+        // hero slider
+        
+        (function ($) {
+            "use strict";
+
+                $('.hero-slider').owlCarousel({
+                    loop: true,
+                    nav: true,
+                    dots: false,
+                    margin: 0,
+                    autoplay: true,
+                    autoplayHoverPause: true,
+                    autoplayTimeout: 5000,
+                    items: 1,
+                    navText: [
+                        "<i class='fal fa-long-arrow-left'></i>",
+                        "<i class='fal fa-long-arrow-right'></i>"
+                    ],
+                });
+            })(jQuery);
+        
+    })
 </script>

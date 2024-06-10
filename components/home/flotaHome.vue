@@ -35,12 +35,15 @@
                                 <!-- <li><i class="far fa-road"></i>10.15km / 1-litre</li>
                                 <li><i class="far fa-steering-wheel"></i>Automatic</li> -->
                             </ul>
-                            <div class="car-footer d-flex justify-content-center">
+                            <div class="car-footer row" >
                                 <!--<span class="car-price">$390 <sub>/ month</sub></span>
                                 <a href="#" class="car-favorite-btn"><i class="far fa-heart"></i></a>-->
-                                <a  v-for="(price, p) in item.pricelists" :key="`price-${p}-vehicle-${key}`" href="#" class="theme-btn">
-                                    <strong>{{ price.fee_on_pricelist_type.without_tax }}{{ vehiclesCurrency.symbol }} / {{ $t(price.fee_on_pricelist_type.type) }}</strong>
+                                <div v-for="(price, p) in item.pricelists" :key="`price-${p}-vehicle-${key}`" class="col-6 p-2">
+                                    {{ price.name }}
+                                <a   href="#" class="theme-btn">
+                                    <strong>{{ price.fee_on_pricelist_type.with_tax }}{{ vehiclesCurrency.symbol }} / {{ $t(price.fee_on_pricelist_type.type) }}</strong>
                                 </a>
+                            </div>
                                 <!-- <a href="#" class="theme-btn2"><strong>{{$t('medio')}}</strong></a> -->
                                 <!-- <a href="#" class="theme-btn3"><strong>{{$t('primium')}}</strong></a> -->
                             </div>

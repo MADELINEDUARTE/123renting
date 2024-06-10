@@ -7,6 +7,7 @@
 </div>
 
 <AppHeader />
+
 <slot /> 
 
 <AppFooter />
@@ -17,7 +18,7 @@
     
     import { reactive, ref, onMounted } from 'vue'
 
-    async function  getToken(event){
+    async function getToken(event){
         try {
             const { data } =  await useFetch('/api/token')
 
@@ -25,6 +26,22 @@
                 // console.log('Token actualizado o recuperado:', tokenInfo);
             } else {
                 console.error('No se pudo obtener el token.');
+            }
+            return true 
+        } catch (error) {
+            console.error('Error en el manejador de eventos:', error);
+            return null;
+        }
+    };
+
+    async function getTokenAction(event){
+        try {
+            const { data } =  await useFetch('/api/tokenAction')
+
+            if (data.value) {
+                // console.log('Token actualizado o recuperado:', tokenInfo);
+            } else {
+                console.error('No se pudo obtener el tokenAction.');
             }
             return true 
         } catch (error) {
@@ -44,6 +61,21 @@
             }
         } catch (error) {
             console.error('Error en el manejador de eventos:', error);
+            return null;
+        }
+    };
+
+    async function getHome({ id_idioma }) {
+        try {
+            const { data } = await useFetch(`/api/homeAction?lang=${id_idioma}`);
+            if (data.value) {
+                const home = reactive(data.value)
+                return home 
+            } else {
+                console.error('Error en homeAction');
+            }
+        } catch (error) {
+            console.error('Error homeAction en el manejador de eventos:', error);
             return null;
         }
     };
@@ -77,25 +109,44 @@
     };
     
     const parametros = ref()
-    
+    const { home, sliders } = useHome()
+    const { locations } = useLocation()
+    const { vehicles } = useVehicle()
+
+    const { locale } = useI18n()
+
     onMounted(async ()=>{
         
+        await getTokenAction()
         await getToken()
 
         parametros.value = await getParametros()
+        
+        const lang = useCookie('lang')
+
+        let idioma = lang.value!=undefined ? lang.value : 'es'
+        locale.value = idioma;
+
+        const homeActtionApi = await getHome({ id_idioma: home.idiomaToId(idioma) })
+        
+        home.setData(homeActtionApi)
 
         const locationsApi = await getLocations()
 
-        const { locations } = useLocation()
-        
         locations.setLocations(locationsApi)
 
         const vehiclesApi = await getVehicles()
 
-        const { vehicles } = useVehicle()
-
         vehicles.setData(vehiclesApi)
 
+    })
+
+
+    watch(sliders ,()=>{
+        (function ($) {
+            "use strict";
+         $(".preloader").fadeOut("slow");
+        })(jQuery);
     })
 
     onNuxtReady(async () => {
@@ -105,7 +156,7 @@
             "use strict";
 
             // preloader
-            $(".preloader").fadeOut("slow");
+           
 
             
             /**
@@ -119,22 +170,7 @@
                 // wow init
                 new WOW().init();
 
-                // hero slider
-                $('.hero-slider').owlCarousel({
-                    loop: true,
-                    nav: true,
-                    dots: false,
-                    margin: 0,
-                    autoplay: true,
-                    autoplayHoverPause: true,
-                    autoplayTimeout: 5000,
-                    items: 1,
-                    navText: [
-                        "<i class='fal fa-long-arrow-left'></i>",
-                        "<i class='fal fa-long-arrow-right'></i>"
-                    ],
-                });
-
+               
                 $('.hero-slider2').on('change.owl.carousel', function (event) {
                     new WOW().init();
                 });
@@ -181,22 +217,6 @@
 
         })(jQuery);
 
-
-
-        // const  { data, pending, error, refresh } = await useLazyFetch('https://dev.api.123renting.es/api/home_frontend', {
-        //     query: { 
-        //         idioma: 1,
-        //         idregion: 1,
-        //         cantidad: 4
-        //     }
-        // })
-
-        // const beneficios = data.value.data.beneficios
-
-        // const { mejoras } = useMejoras()
-
-        // mejoras.data = reactive(beneficios)
-        // do something with myAnalyticsLibrary
     })
 
     

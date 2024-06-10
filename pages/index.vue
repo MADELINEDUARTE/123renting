@@ -10,7 +10,7 @@
 
         <!-- find-car form -->
         <ReservaSolicitudFormHome />   
-<!-- <div class="find-car" id="iniciatureserva">
+        <!-- <div class="find-car" id="iniciatureserva">
     <div class="container">
         <div class="find-car-form">
             <h4 class="find-car-title">{{$t('encuentra')}}</h4>
@@ -680,9 +680,6 @@ import flotaHome from './../components/home/flotaHome.vue'
     import { reactive, ref, onMounted } from 'vue'
 
     const { locations } = useLocation()
-
-    
-
 
     onNuxtReady(async () => {
         (function ($) {

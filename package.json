@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "@lottiefiles/vue-lottie-player": "^1.1.0",
+        "@nuxtjs/toast": "^3.3.1",
         "jquery": "^3.7.1",
         "moment": "^2.30.1",
         "vite": "^5.0.11",

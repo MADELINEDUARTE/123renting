@@ -13,7 +13,7 @@
                                     <img src="/assets/img/icon/mail.svg" alt="">
                                 </div>
                                 <div class="header-top-contact-info">
-                                    <!-- <a href="mailto:info@example.com">{{$t("correo")}}</a> -->
+                                    <a :href="`mailto:${parametros.email}`">{{ parametros.email }}</a>
                                 </div>
                             </li>
                             <li>
@@ -21,7 +21,7 @@
                                     <img src="/assets/img/icon/clock.svg" alt="">
                                 </div>
                                 <div class="header-top-contact-info">
-                                    <a href="#">{{$t('horarios')}}</a>
+                                    <a href="#">{{parametros.horario}}</a>
                                 </div>
                             </li>
                         </ul>
@@ -33,11 +33,11 @@
                 </div>
                     <div class="header-top-social">
                         <DarkMode/>
-                        <a href="https://www.facebook.com/profile.php?id=100063699933991ref=bookmarks"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/123renting.es/?hl=es"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com/1Renting"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.youtube.com/channel/UCDktymZ1Gi_bvVykstBc57Q"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="https://www.google.com/maps/place/123Renting/@39.5904605,-0.464268,17z/data=!3m1!4b1!4m6!3m5!1s0xd605da73e2c14c5:0x46e6275152a4f1f5!8m2!3d39.5904605!4d-0.464268!16s%2Fg%2F11h_2c1zdp?entry=ttu"><i class="fa-brands fa-google"></i></a>
+                        <a :href="parametros.facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a :href="parametros.instagram"><i class="fab fa-instagram"></i></a>
+                        <a :href="parametros.twitter"><i class="fab fa-twitter"></i></a>
+                        <a :href="parametros.youtube"><i class="fa-brands fa-youtube"></i></a>
+                        <a :href="parametros.google"><i class="fa-brands fa-google"></i></a>
                     </div>
                 </div>
             </div>
@@ -57,9 +57,9 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                               <li><a class="dropdown-item" nuxt-link to="profile"><i class="far fa-user"></i>{{$t('perfil')}}</a></li>
-                              <li><a class="dropdown-item" href="billing"><i class="far fa-clipboard-list"></i> {{$t('facturacion')}}</a></li>
-                              <li><a class="dropdown-item" href="setting"><i class="far fa-cog"></i>{{$t('ajustes')}}</a></li>
-                              <li><a class="dropdown-item" href="#"><i class="far fa-sign-out"></i>{{$t('cerrar_sesion')}}</a></li>
+                              <!-- <li><a class="dropdown-item" href="billing"><i class="far fa-clipboard-list"></i> {{$t('facturacion')}}</a></li> -->
+                              <!-- <li><a class="dropdown-item" href="setting"><i class="far fa-cog"></i>{{$t('ajustes')}}</a></li> -->
+                              <li><a class="dropdown-item" @click.prevent="onLogout" href="#"><i class="far fa-sign-out"></i>{{$t('cerrar_sesion')}}</a></li>
                             </ul>
                           </div>
                     </div>
@@ -71,7 +71,7 @@
                 <div class="collapse navbar-collapse" id="main_nav">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link active" href="#" data-bs-toggle="dropdown">{{$t('inicio')}}</a>
+                            <nuxt-link  class="nav-link active" to="/">{{$t('inicio')}} </nuxt-link> 
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#visitanos">
                             {{$t('oficinas')}}</a></li>
@@ -84,7 +84,7 @@
                             </div>
                             <div class="header-phone-content">
                                 <span>{{$t('necesitas_furgo')}}</span>
-                                <h5 class="header-phone-number"><a href="tel:+2123654789">{{$t('telefono')}}</a></h5>
+                                <h5 class="header-phone-number"><a href="tel:+2123654789">{{ parametros.telefono }}</a></h5>
                             </div>
                         </div>
                         <div class="header-btn mt-2">
@@ -97,9 +97,9 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                   <li><a class="dropdown-item" href="profile"><i class="far fa-user"></i> {{$t('perfil')}}</a></li>
-                                  <li><a class="dropdown-item" href="billing"><i class="far fa-clipboard-list"></i>{{$t('facturacion')}}</a></li>
-                                  <li><a class="dropdown-item" href="setting"><i class="far fa-cog"></i> {{$t('ajustes')}}</a></li>
-                                  <li><a class="dropdown-item" href="#"><i class="far fa-sign-out"></i>{{$t('cerrar_sesion')}}</a></li>
+                                  <!-- <li><a class="dropdown-item" href="billing"><i class="far fa-clipboard-list"></i>{{$t('facturacion')}}</a></li>
+                                  <li><a class="dropdown-item" href="setting"><i class="far fa-cog"></i> {{$t('ajustes')}}</a></li> -->
+                                  <li><a @click.prevent="onLogout" class="dropdown-item" href="#"><i class="far fa-sign-out"></i>{{$t('cerrar_sesion')}}</a></li>
                                 </ul>
                               </div>
                         </div>
@@ -114,3 +114,30 @@
 </header>
 <!-- header area end -->
 </template>
+
+<script setup>
+    const { parametros } = useHome()
+    
+    const auth = useCookie('auth')
+
+    async function onLogout(){
+        
+        try {
+
+            const {  data, pending, error, refresh } =  await useFetch('/api/auth/logout',{  method: 'post' })
+            
+
+            if(data.value){
+                auth.value = undefined
+                navigateTo('/')
+            }else{
+                
+            }
+
+        } catch (error) {
+            console.error('Error en el manejador de eventos:', error);
+            return null;
+        }
+    };
+
+</script>
