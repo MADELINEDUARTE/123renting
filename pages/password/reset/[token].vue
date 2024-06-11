@@ -6,7 +6,7 @@
                     <div class="find-car-form col-12 col-sm-6 mx-auto">
                         <div class="d-flex justify-content-between mb-2">
                             <div class="d-flex justify-center flex-column">
-                                <h4 class="find-car-title m-0">{{ $t('Ingreseasucuenta') }}</h4>
+                                <h4 class="find-car-title m-0">{{ $t('recuperarcontrasena') }}</h4>
                             </div>
                         </div>
                         <form action="#" @submit.prevent="onSubmit">
@@ -22,31 +22,28 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group mb-4 col-12">
-                                    <label>{{ $t('EmailAddress') }}</label>
-                                    <input type="email" v-model="email" class="form-control" :placeholder="$t('YourEmail')" autocomplete="off" style="background-repeat: no-repeat !important; background-position: calc(100% - 3px) center !important; background-size: 14px !important; cursor: text;">
+                                <div v-if="messageSuccess" class="col-12 my-4">
+                                    <div class="card bg-success">
+                                        <div class="card-body">
+                                            <p>{{ $t(messageSuccess) }}</p>
+                                           
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group mb-4 col-12">
                                     <label>{{ $t('Password') }}</label>
-                                    <input type="password" v-model="password" class="form-control" :placeholder="$t('YourPassword')" autocomplete="off" style="background-repeat: no-repeat !important; background-position: calc(100% - 3px) center !important; background-size: 14px !important;">
+                                    <input type="password" v-model="dataForm.password" class="form-control" :placeholder="$t('YourPassword')" autocomplete="off" style="background-repeat: no-repeat !important; background-position: calc(100% - 3px) center !important; background-size: 14px !important;">
                                 </div>
-                                <div class="d-flex mb-4 justify-content-between mb-4 col-12">
-                                    <!-- <div class="form-check">
-                                        <input class="form-check-input" v-model="remember" type="checkbox" value="" id="remember">
-                                        <label class="form-check-label" for="remember">Remember Me</label>
-                                    </div> -->
-                                    <!-- <a href="forgot-password.html" class="forgot-pass">{{ $t('ForgotPassword') }}</a> -->
-                                    <nuxt-link  class="nav-link mx-2 active" to="/forgot-password">  {{ $t('ForgotPassword') }} </nuxt-link> 
+                                <div class="form-group mb-4 col-12">
+                                    <label>{{ $t('Passwordconfirmation') }}</label>
+                                    <input type="password" v-model="dataForm.password_confirmation" class="form-control" :placeholder="$t('Passwordconfirmation')" autocomplete="off" style="background-repeat: no-repeat !important; background-position: calc(100% - 3px) center !important; background-size: 14px !important;">
                                 </div>
+                                
+                                
                                 <div class="d-flex align-items-center col-12">
-                                    <button :disabled="load" type="submit" class="theme-btn btn"><i class="far fa-sign-in"></i> {{ $t('Login') }}</button>
+                                    <button :disabled="load" type="submit" class="theme-btn btn"><i class="far fa-sign-in"></i> {{ $t('Enviar') }}</button>
                                 </div>
-                                <div class="d-flex justify-content-center my-4 align-items-center col-12">
-                                    <p>
-                                       {{ $t('notienescuenta') }}
-                                    </p>
-                                    <nuxt-link  class="nav-link mx-2 active" to="/register">  {{ $t('Registrate') }} </nuxt-link> 
-                                </div>
+                                
                             </div>
                         </form>
                     </div>
@@ -64,11 +61,20 @@
     const loginInfo = useCookie('loginInfo')
     const auth = useCookie('auth')
     const messageError = ref('')
+    const messageSuccess = ref('')
+    
     const errors = ref([])
     const submit = ref()
     const load = ref(false)
     const route = useRoute()
     const router = useRouter()
+
+    const dataForm = reactive({
+        email: "",
+        token: "",
+        password:"",
+        password_confirmation:"",
+    })
 
     const onSubmit = (event) => {
         if(remember.value){
@@ -79,39 +85,30 @@
             }
         }
 
-        Login()
+        onApiSend()
     }
     onMounted(()=>{
         messageError.value = ''
         errors.value = []
 
-        if(loginInfo.value){
-            email.value = loginInfo.value.email
-            // password.value = loginInfo.value.password
-            // remember.value = loginInfo.value.remember
-        }
+        dataForm.email = route.query.email
+        dataForm.token = route.params.token
 
     })
 
-    async function Login(){
+    async function onApiSend(){
         
         try {
             load.value = true
-            const {  data, pending, error, refresh } =  await useFetch('/api/auth/login',{  method: 'post',body:{
-                email: email.value,
-                password: password.value
-            } })
+            const {  data, pending, error, refresh } =  await useFetch('/api/password/reset',{  method: 'post', body: dataForm })
             load.value = false
 
             if(data.value){
-                // console.log('data.value.token',data.value.access_token)
-                auth.value = data.value.access_token
-                errors.value = []
-                messageError.value = ''
-                loginInfo.value = {
-                    email: email.value,
-                }
-                navigateTo('/profile')
+
+                messageSuccess.value = data.value.message
+                setTimeout(()=>{
+                    navigateTo('/login')
+                },1000)
             }else{
                 const errorData = error.value.data
                 messageError.value = errorData.data.message

@@ -19,10 +19,18 @@
                                     <!-- <button type="button" class="profile-img-btn"><i class="far fa-camera"></i></button> -->
                                     <input type="file" class="profile-img-file">
                                 </div>
-                                <!-- <p>{{ clientInfo }}</p> -->
+                                
+                                <div v-if="client.data.id !==0">
                                     <h4>{{ client.data.name }}</h4>
                                     <p>{{ client.data.email }}</p>
                                     <p style="font-size: 10px">***** {{ client.data.code.slice(-5) }}</p>
+                                </div>
+                                <div v-else>
+                                    <div v-if="clientAction.data.id !==0">
+                                        <h4>{{ clientAction.data.nombres }} {{ clientAction.data.apellidos }}</h4>
+                                        <p>{{ clientAction.data.email }}</p>
+                                    </div>
+                                </div>
                             </div>
                                     <ul class="user-profile-sidebar-list">
                                         <li><nuxt-link to="profile" class="active"><i class="far fa-user"></i>{{$t('perfil')}}</nuxt-link>
@@ -34,26 +42,50 @@
                         </div>
                     </div>
                             <div class="col-lg-9">
-                                <div class="user-profile-wrapper">
+                                <div class="user-profile-wrapper mb-4">
                                     <div class="user-profile-card">
                                         <h4 class="user-profile-card-title">{{$t('info_perfil')}}</h4>
-                                            <div class="col-lg-6">
-                                                <div class="profile-info-list">
-                                                <ul>
+                                        <div class="col-lg-12">
+                                            <div class="profile-info-list">
+                                                <ul v-if="client.data.id !=0">
                                                     <li>{{$t('nombre_completo')}} <span>{{ client.data.name }}</span></li>
                                                     <li>{{$t('c_correo')}} <span>{{ client.data.email }}</span></li>
                                                     <li>{{$t('telefono_usuario')}} <span>{{ client.data.telephone }}</span></li>
                                                     <!-- <li>{{$t('direccion_usuario1')}} <span>{{ client.data.address }}</span></li> -->
                                                     <!-- <li>{{$t('fecha_de_ingreso')}} <span>{{$t('fecha_de_ingresonro')}}</span></li> -->
                                                 </ul>
+                                                <div v-else>
+                                                    <ul v-if="clientAction.data.id != 0">
+                                                        <li>{{$t('nombre_completo')}} <span>{{ clientAction.data.nombres }} {{ clientAction.data.apellidos }}</span></li><li>{{$t('c_correo')}} <span>{{ clientAction.data.email }}</span></li>
+                                                        <li>{{$t('telefono_usuario')}} <span>{{ clientAction.data.telefono }}</span></li>
+                                                    </ul>
+                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="user-profile-wrapper">
+                                    <div class="user-profile-card">
+                                        <h4 class="user-profile-card-title">{{$t('datospersonales')}}</h4>
+                                        <div class="col-lg-12">
+                                            <div class="profile-info-list">
+                                                <ul>
+                                                    <li v-for="(item,key) in clientAction.data" :key="`item${key}`" v-show="key != 'id'"><p >{{$t(key)}} <span>{{ item }}</span></p></li>
+                                                    
+                                                    <!-- <li>{{$t('c_correo')}} <span>{{ client.data.email }}</span></li> -->
+                                                    <!-- <li>{{$t('c_correo')}} <span>{{ client.data.email }}</span></li>
+                                                    <li>{{$t('telefono_usuario')}} <span>{{ client.data.telephone }}</span></li> -->
+                                                    <!-- <li>{{$t('direccion_usuario1')}} <span>{{ client.data.address }}</span></li> -->
+                                                    <!-- <li>{{$t('fecha_de_ingreso')}} <span>{{$t('fecha_de_ingresonro')}}</span></li> -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
         </main>
     </LayoutWeb>
 </template>
@@ -84,8 +116,28 @@
         }
     }
 
+    const { clientAction  } = useClientAction()
+
+    async function onSearchClientAction()
+    {
+        let query = {}
+
+        if(loginInfo.value.email){
+            query.email = loginInfo.value.email
+        }
+
+        const {  data, pending, error, refresh } =  await useFetch('/api/profile/clientAction', {  
+            query: query
+        })
+
+        if(data.value && data.value.status){
+            clientAction.setClient(data.value.client)
+        }
+    }
+
     onMounted(()=>{
         onSearchClient()
+        onSearchClientAction()
     })
 
     const auth = useCookie('auth')

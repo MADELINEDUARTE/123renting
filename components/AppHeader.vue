@@ -96,7 +96,7 @@
                                  <i class="far fa-user-circle"></i>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                  <li><a class="dropdown-item" href="profile"><i class="far fa-user"></i> {{$t('perfil')}}</a></li>
+                                  <li> <nuxt-link  class="dropdown-item" to="/profile"><i class="far fa-user"></i> {{$t('perfil')}} </nuxt-link>  </li>
                                   <!-- <li><a class="dropdown-item" href="billing"><i class="far fa-clipboard-list"></i>{{$t('facturacion')}}</a></li>
                                   <li><a class="dropdown-item" href="setting"><i class="far fa-cog"></i> {{$t('ajustes')}}</a></li> -->
                                   <li><a @click.prevent="onLogout" class="dropdown-item" href="#"><i class="far fa-sign-out"></i>{{$t('cerrar_sesion')}}</a></li>

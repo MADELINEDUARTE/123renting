@@ -8,34 +8,40 @@ interface TokenInfo {
 async function searhClient(event:any)
 {
     const config = useRuntimeConfig(event);
-    const storedTokenInfo = getCookie(event, 'tokenInfo');
+    const storedTokenInfo = getCookie(event, 'tokenInfoAction');
 
     if(!storedTokenInfo){
         return null
     }
 
     const tokenInfo: TokenInfo = JSON.parse(storedTokenInfo);
-
-    // const bodyData = await readBody(event)
-
+    const cookies = parseCookies(event)
+    const tokenLogin = cookies.auth;
     const query = getQuery(event)
     
-    const response = await $fetch(`${config.urlApi}/api/partner/customer/search`,{
+    const response = await $fetch(`${config.urlApiAction}/api/client/search`,{
         headers: {
-         'X-PartnerToken': tokenInfo.token,
+            'x-api-key': tokenInfo.token,
+            'x-region-id': config.regionAction,
+            'Accept': 'application/json',
+            'Authorization':'Bearer '+tokenLogin
         },
         query: {
             name: query.name || '',
             email: query.email || '',
             per_page: query.per_page || 10,
-            page: query.page || 1
+            page: query.page || 1,
+            idioma: query.lang || config.idiomaAction,
+            idregion: config.regionAction
         }
       });
+    
+   
 
     return response
 }
 
 export default defineEventHandler(async (event) => {
-    const logout = await searhClient(event);
-    return logout;
+    const client = await searhClient(event);
+    return client;
 });
