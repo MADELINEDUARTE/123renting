@@ -108,6 +108,13 @@ const home = {
     }),
     setData: function(result: Data){
         this.data.data = result
+        const expirationTime = new Date();
+        expirationTime.setDate(expirationTime.getDate() + 1);
+
+        const sliders = useCookie('sliders',{ expires: expirationTime })
+        
+        sliders.value = JSON.stringify(this.data.data.sliders)
+
         this.data.status = true
     },
      idiomaToId: function  (idioma: string): number  {
@@ -128,6 +135,10 @@ const parametros  = computed((): Parametros=>{
 
 
 const sliders  = computed((): Slider[]=>{
+    const sliders = useCookie<Slider[]>('sliders') 
+    if(sliders.value){
+        return sliders.value
+    }
     return home.data.data.sliders
 })
 

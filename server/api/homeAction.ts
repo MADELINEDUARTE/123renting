@@ -84,9 +84,6 @@ async function getHome(event: any): Promise<ApiResponse | null> {
     const query = getQuery(event)
 
     const idioma = query.lang ? query.lang : config.idiomaAction
-
-    
-
     const response = await $fetch<ApiResponse>(`${config.urlApiAction}/api/home_frontend?idioma=${idioma}&idregion=${config.regionAction}`,{
         headers: {
          'x-api-key': tokenInfo.token,
@@ -106,18 +103,18 @@ export default defineEventHandler(async (event) => {
         // }
 
         const parametros = await getHome(event);
-
         
         if(parametros && parametros.status){
+
             // Establecemos el tiempo de vencimiento de la cookie (por ejemplo, 1 día)
             const expirationTime = new Date();
             expirationTime.setDate(expirationTime.getDate() + 1);
                 
+            // console.log('parametros.data',JSON.stringify(parametros.data))
             // Guardamos los nuevos parámetros en las cookies con tiempo de vencimiento
             // setCookie(event, 'home', JSON.stringify(parametros.data), { expires: expirationTime });
          
             return parametros.data
-        
         }
 
         return null

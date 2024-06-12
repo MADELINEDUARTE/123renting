@@ -142,10 +142,10 @@
     })
 
 
-    watch(sliders ,()=>{
+    watch(sliders,(to)=>{
         (function ($) {
             "use strict";
-         $(".preloader").fadeOut("slow");
+            $(".preloader").fadeOut("slow");
         })(jQuery);
     })
 
@@ -155,10 +155,7 @@
         (function ($) {
             "use strict";
 
-            // preloader
-           
-
-            
+            // preloade
             /**
              * data-background 
              * TODO no se para que es esto
