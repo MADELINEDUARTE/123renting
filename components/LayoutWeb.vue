@@ -139,15 +139,18 @@
 
         vehicles.setData(vehiclesApi)
 
+        $(".preloader").fadeOut("slow");
+
     })
 
 
-    watch(sliders,(to)=>{
-        (function ($) {
-            "use strict";
-            $(".preloader").fadeOut("slow");
-        })(jQuery);
-    })
+    // watch(sliders,(to)=>{
+    //     console.log('to sliders',to)
+    //     (function ($) {
+    //         "use strict";
+    //         $(".preloader").fadeOut("slow");
+    //     })(jQuery);
+    // })
 
     onNuxtReady(async () => {
 
