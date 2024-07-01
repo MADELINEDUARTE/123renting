@@ -141,9 +141,9 @@
         
         console.log('Mounted')
 
-        (function ($) {
-            "use strict";
-            
+        // (function ($) {
+        //     "use strict";
+
             $(".preloader").fadeOut("slow");
 
             new WOW().init();
@@ -152,7 +152,7 @@
                 new WOW().init();
             });
 
-        })(jQuery);
+        // })(jQuery);
 
     })
 
@@ -167,10 +167,10 @@
 
     onNuxtReady(async () => {
 
-        console.log('nuxtReady')
+        // 
         (function ($) {
             "use strict";
-
+            console.log('nuxtReady')
             // preloade
             /**
              * data-background 
