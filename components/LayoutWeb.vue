@@ -138,8 +138,21 @@
         const vehiclesApi = await getVehicles()
 
         vehicles.setData(vehiclesApi)
+        
+        console.log('Mounted')
 
-        $(".preloader").fadeOut("slow");
+        (function ($) {
+            "use strict";
+            
+            $(".preloader").fadeOut("slow");
+
+            new WOW().init();
+  
+            $('.hero-slider2').on('change.owl.carousel', function (event) {
+                new WOW().init();
+            });
+
+        })(jQuery);
 
     })
 
@@ -154,7 +167,7 @@
 
     onNuxtReady(async () => {
 
-        
+        console.log('nuxtReady')
         (function ($) {
             "use strict";
 
@@ -168,12 +181,12 @@
                 // });
 
                 // wow init
-                new WOW().init();
+                // new WOW().init();
 
                
-                $('.hero-slider2').on('change.owl.carousel', function (event) {
-                    new WOW().init();
-                });
+                // $('.hero-slider2').on('change.owl.carousel', function (event) {
+                //     new WOW().init();
+                // });
 
                 // multi level dropdown menu
                 $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
