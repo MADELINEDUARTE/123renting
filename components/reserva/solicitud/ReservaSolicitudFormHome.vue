@@ -17,7 +17,7 @@
 
                     <div v-if="detectDeviceType() =='isDesktop'">
                         <div v-if="statusOpen"  class="col-12 d-flex mb-4" :class="paso > 1 ? 'justify-content-between':'justify-content-end'">
-                            <!-- <button type="button" v-if="paso > 1" @click="onOpen" class="theme-btn w-auto py-2 m-0">{{$t('volver')}}</button> -->
+                            <button type="button" v-if="paso > 1" @click="onOpen" class="theme-btn w-auto py-2 m-0">{{$t('volver')}}</button>
                             <button :disabled="loading" type="button" v-if="paso < 2" @click="siguiente(paso+1)" class="theme-btn w-auto py-2 m-0">
                                 <i v-if="loading" class="fa-solid fa-spinner"></i>
                                 <span v-else>{{ $t('siguiente') }}</span>
@@ -171,7 +171,6 @@
 
         if(prox < 1){
             statusOpen.value = false
-
             // onOpen()
             return 
         }

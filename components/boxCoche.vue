@@ -20,15 +20,21 @@
                 <!-- <li><i class="far fa-road"></i>10.15km / 1-litre</li>
                 <li><i class="far fa-steering-wheel"></i>Automatic</li> -->
             </ul>
-            <div class="car-footer d-flex justify-content-center">
+            <!-- {{ precios }} -->
+            <div class="car-footer" v-if="precios.length">
+                <a href="#" @click.prevent="selectCoche(coche.model_id, precios[0].id)" v-if="precios[0]" class="theme-btn1"><strong>{{ precios[0].name }}</strong> <br>  <strong>{{ precios[0].fee_on_pricelist_type.with_tax }}{{ props.vehicles_currency?.symbol }} / {{ $t(precios[0].fee_on_pricelist_type.type) }}</strong> </a>
+                <a href="#" @click.prevent="selectCoche(coche.model_id, precios[1].id)" v-if="precios[1]" class="theme-btn2"><strong>{{ precios[1].name }}</strong> <br>  <strong>{{ precios[1].fee_on_pricelist_type.with_tax }}{{ props.vehicles_currency?.symbol }} / {{ $t(precios[1].fee_on_pricelist_type.type) }}</strong> </a>
+                <a href="#" @click.prevent="selectCoche(coche.model_id, precios[2].id)" v-if="precios[2]" class="theme-btn3"><strong>{{ precios[2].name }}</strong> <br>  <strong>{{ precios[2].fee_on_pricelist_type.with_tax }}{{ props.vehicles_currency?.symbol }} / {{ $t(precios[2].fee_on_pricelist_type.type) }}</strong> </a>
+            </div>
+            <!-- <div class="car-footer d-flex justify-content-center"> -->
                 <!--<span class="car-price">$390 <sub>/ month</sub></span>
                 <a href="#" class="car-favorite-btn"><i class="far fa-heart"></i></a>-->
-                <a @click.prevent="selectCoche(coche.model_id, price.id)"  v-for="(price, p) in coche.pricelists" :key="`price-${p}-vehicle-${coche.model_id}`" href="#" class="theme-btn">
+                <!-- <a @click.prevent="selectCoche(coche.model_id, price.id)"  v-for="(price, p) in coche.pricelists" :key="`price-${p}-vehicle-${coche.model_id}`" href="#" class="theme-btn">
                     <strong>{{ price.fee_on_pricelist_type.without_tax }}{{ props.vehicles_currency?.symbol }} / {{ $t(price.fee_on_pricelist_type.type) }}</strong>
-                </a>
+                </a> -->
                 <!-- <a href="#" class="theme-btn2"><strong>{{$t('medio')}}</strong></a> -->
                 <!-- <a href="#" class="theme-btn3"><strong>{{$t('primium')}}</strong></a> -->
-            </div>
+            <!-- </div> -->
         </div>
     </div>
 </template>
@@ -54,6 +60,10 @@
         plan_id.value = price_id
         emit( 'selectCoche' , { coche_id, price_id } )
     };
+
+    const precios = computed(()=>{
+        return props.coche?.pricelists.filter((price:any) => price.fee_type == 'daily').reverse() || []
+    })
 
 
     // const { planes } = usePlan()

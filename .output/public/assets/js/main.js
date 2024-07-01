@@ -6,19 +6,19 @@ Version         : 1.1
 =======================================================*/
 
 
-(function ($) {
+(function($) {
     "use strict";
 
 
     // multi level dropdown menu
-    $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
+    $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
         if (!$(this).next().hasClass('show')) {
             $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
         }
         var $subMenu = $(this).next('.dropdown-menu');
         $subMenu.toggleClass('show');
 
-        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
             $('.dropdown-submenu .show').removeClass('show');
         });
         return false;
@@ -26,8 +26,8 @@ Version         : 1.1
 
 
     // data-background    
-    $(document).on('ready', function () {
-        $("[data-background]").each(function () {
+    $(document).on('ready', function() {
+        $("[data-background]").each(function() {
             $(this).css("background-image", "url(" + $(this).attr("data-background") + ")");
         });
     });
@@ -53,7 +53,7 @@ Version         : 1.1
         ],
     });
 
-    $('.hero-slider2').on('change.owl.carousel', function (event) {
+    $('.hero-slider2').on('change.owl.carousel', function(event) {
         new WOW().init();
     });
 
@@ -126,14 +126,14 @@ Version         : 1.1
 
 
     // preloader
-    $(window).on('load', function () {
-        $(".preloader").fadeOut("slow");
+    $(window).on('load', function() {
+        // $(".preloader").fadeOut("slow");
     });
 
 
     // fun fact counter
     $('.counter').countTo();
-    $('.counter-box').appear(function () {
+    $('.counter-box').appear(function() {
         $('.counter').countTo();
     }, {
         accY: -100
@@ -160,7 +160,7 @@ Version         : 1.1
 
 
     // scroll to top
-    $(window).scroll(function () {
+    $(window).scroll(function() {
 
         if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
             $("#scroll-top").fadeIn('slow');
@@ -169,13 +169,13 @@ Version         : 1.1
         }
     });
 
-    $("#scroll-top").click(function () {
+    $("#scroll-top").click(function() {
         $("html, body").animate({ scrollTop: 0 }, 1500);
         return false;
     });
 
 
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         if ($(this).scrollTop() > 50) {
             $('.navbar').addClass("fixed-top");
         } else {
@@ -186,7 +186,7 @@ Version         : 1.1
 
     // countdown
     if ($('#countdown').length) {
-        $('#countdown').countdown('2030/01/30', function (event) {
+        $('#countdown').countdown('2030/01/30', function(event) {
             $(this).html(event.strftime('' + '<div class="row">' + '<div class="col countdown-single">' + '<h2 class="mb-0">%-D</h2>' + '<h5 class="mb-0">Day%!d</h5>' + '</div>' + '<div class="col countdown-single">' + '<h2 class="mb-0">%H</h2>' + '<h5 class="mb-0">Hours</h5>' + '</div>' + '<div class="col countdown-single">' + '<h2 class="mb-0">%M</h2>' + '<h5 class="mb-0">Minutes</h5>' + '</div>' + '<div class="col countdown-single">' + '<h2 class="mb-0">%S</h2>' + '<h5 class="mb-0">Seconds</h5>' + '</div>' + '</div>'));
         });
     }
@@ -200,33 +200,23 @@ Version         : 1.1
 
     // find-car date picker 
     if ($('.date-picker').length) {
-        $(function () {
+        $(function() {
             $(".date-picker").datepicker();
         });
     }
 
     // find-car time picker 
     if ($('.time-picker').length) {
-        $(function () {
+        $(function() {
             $(".time-picker").timepicker();
         });
     }
 
 
     // profile image btn
-    $(".profile-img-btn").click(function () {
-         $(".profile-img-file").click(); 
+    $(".profile-img-btn").click(function() {
+        $(".profile-img-file").click();
     });
 
 
 })(jQuery);
-
-
-
-
-
-
-
-
-
-

@@ -19,9 +19,6 @@
                             <div class="car-top">
                                 <h4><a class="letrac" href="#">{{ item.model_details.name }} <br>
                                 <h6 class="modelo">{{ item.model_details.model }}</h6></a></h4>
-                                <!-- <br> -->
-                        
-                                <!--<span><i class="fas fa-star"></i> 5.0</span>-->
                             </div>
 
                             <div class="car-img p-3">
@@ -29,29 +26,19 @@
                             </div>
                         
                             <ul class="car-list">
-                                <!-- <li><img src="/assets/img/car/euro.png" class="far fa-car">{{$t('precio_d')}}&nbsp;&nbsp;</li> -->
                                 <li><img src="/assets/img/car/pasajeros.png"  class="far fa-user-tie">  {{ item.model_details.max_people }} {{$t('personas')}}&nbsp;</li>
                                 <li><img src="/assets/img/car/puerta.png" class="far fa-gas-pump"> {{ item.model_details.doors }} {{$t('puertas')}}</li>
-                                <!-- <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li> -->
                             </ul>
-                            <div class="car-footer row" >
-                                <!--<span class="car-price">$390 <sub>/ month</sub></span>
-                                <a href="#" class="car-favorite-btn"><i class="far fa-heart"></i></a>-->
-                                <div v-for="(price, p) in item.pricelists" :key="`price-${p}-vehicle-${key}`" class="col-6 p-2">
-                                    {{ price.name }}
-                                <a   href="#" class="theme-btn">
-                                    <strong>{{ price.fee_on_pricelist_type.with_tax }}{{ vehiclesCurrency.symbol }} / {{ $t(price.fee_on_pricelist_type.type) }}</strong>
-                                </a>
-                            </div>
-                                <!-- <a href="#" class="theme-btn2"><strong>{{$t('medio')}}</strong></a> -->
-                                <!-- <a href="#" class="theme-btn3"><strong>{{$t('primium')}}</strong></a> -->
+                            <div class="car-footer" v-if="getPrecios(item.pricelists).length">
+                                <a v-if="getPrecios(item.pricelists)[0]" href="#" class="theme-btn1"><strong>{{ getPrecios(item.pricelists)[0].name }}</strong> <br>  <strong>{{ getPrecios(item.pricelists)[0].fee_on_pricelist_type.with_tax }}{{ vehiclesCurrency.symbol }} / {{ $t(getPrecios(item.pricelists)[0].fee_on_pricelist_type.type) }}</strong> </a>
+                                <a v-if="getPrecios(item.pricelists)[1]" href="#" class="theme-btn2"><strong>{{ getPrecios(item.pricelists)[1].name }}</strong> <br>  <strong>{{ getPrecios(item.pricelists)[1].fee_on_pricelist_type.with_tax }}{{ vehiclesCurrency.symbol }} / {{ $t(getPrecios(item.pricelists)[1].fee_on_pricelist_type.type) }}</strong> </a>
+                                <a v-if="getPrecios(item.pricelists)[2]" href="#" class="theme-btn3"><strong>{{ getPrecios(item.pricelists)[2].name }}</strong> <br>  <strong>{{ getPrecios(item.pricelists)[2].fee_on_pricelist_type.with_tax }}{{ vehiclesCurrency.symbol }} / {{ $t(getPrecios(item.pricelists)[2].fee_on_pricelist_type.type) }}</strong> </a>
                             </div>
                         </div>
                     </div>
                 </div> 
 
-                <!-- <div class="col-lg-6 col-xl-4">
+                 <!-- <div class="col-lg-6 col-xl-4">
                     <div class="car-item">
                         <div class="car-content">
                             <div class="car-top">
@@ -71,17 +58,15 @@
                                 <li><i class="far fa-steering-wheel"></i>Automatic</li>
                             </ul>
                             <div class="car-footer">
-                                <span class="car-price">$390 <sub>/ month</sub></span>
-                                <a href="#" class="car-favorite-btn"><i class="far fa-heart"></i></a>
                                 <a href="#" class="theme-btn1"><strong>{{$t('basic')}}</strong></a>
                                 <a href="#" class="theme-btn2"><strong>{{$t('medio')}}</strong></a>
                                 <a href="#" class="theme-btn3"><strong>{{$t('primium')}}</strong></a>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-lg-6 col-xl-4">
+               <!-- <div class="col-lg-6 col-xl-4">
                     <div class="car-item">
                         <div class="car-content">
                             <div class="car-top">
@@ -133,4 +118,22 @@
         return vehicles.data.result.common.currency
     })
 
+    const getPrecios = (pricelists) => {
+
+        const precios = pricelists.filter((price) => price.fee_type == 'daily')
+
+        return precios.reverse()
+    }
+
 </script>
+
+<style  lang="scss">
+
+.car-footer{
+    
+    &>div:last-child>div  {
+        color: red!important;
+    }
+   
+}
+</style>
