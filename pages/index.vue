@@ -1,12 +1,9 @@
 <template>
 <LayoutWeb>
 <main class="main">
-<!-- hero slider -->
-<HomeCarousel v-if="sliders.length"/>
-{{ sliders.length }}
+        <!-- hero slider -->
+        <HomeCarousel v-if="sliders.length"/>
         <!-- hero slider end -->
-
-
 
         <!-- find-car form -->
         <ReservaSolicitudFormHome />   
