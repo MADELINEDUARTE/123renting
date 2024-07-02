@@ -26,6 +26,7 @@ interface Location {
 const locations = {
     data:  reactive<Location[]>([]),
     setLocations: function(data:Location[]) {
+        this.data = [];
         this.data.push(...data)
     }
 };

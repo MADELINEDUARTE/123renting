@@ -98,7 +98,7 @@
         (function ($) {
             "use strict";
 
-            console.log('carga car')
+            
 
                 $('.hero-slider').owlCarousel({
                     loop: true,

@@ -139,7 +139,7 @@
 
         vehicles.setData(vehiclesApi)
         
-        console.log('Mounted')
+        // console.log('Mounted')
 
         // (function ($) {
         //     "use strict";
