@@ -146,11 +146,26 @@
 
             $(".preloader").fadeOut("slow");
 
-            new WOW().init();
+            // new WOW().init();
+
+                // $('.hero-slider').owlCarousel({
+                //     loop: true,
+                //     nav: true,
+                //     dots: false,
+                //     margin: 0,
+                //     autoplay: true,
+                //     autoplayHoverPause: true,
+                //     autoplayTimeout: 5000,
+                //     items: 1,
+                //     navText: [
+                //         "<i class='fal fa-long-arrow-left'></i>",
+                //         "<i class='fal fa-long-arrow-right'></i>"
+                //     ],
+                // });
   
-            $('.hero-slider2').on('change.owl.carousel', function (event) {
-                new WOW().init();
-            });
+            // $('.hero-slider2').on('change.owl.carousel', function (event) {
+            //     new WOW().init();
+            // });
 
         // })(jQuery);
 

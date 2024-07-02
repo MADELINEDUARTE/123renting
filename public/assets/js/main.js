@@ -34,28 +34,28 @@ Version         : 1.1
 
 
     // wow init
-    new WOW().init();
+    // new WOW().init();
 
 
-    // hero slider
-    $('.hero-slider').owlCarousel({
-        loop: true,
-        nav: true,
-        dots: false,
-        margin: 0,
-        autoplay: true,
-        autoplayHoverPause: true,
-        autoplayTimeout: 5000,
-        items: 1,
-        navText: [
-            "<i class='fal fa-long-arrow-left'></i>",
-            "<i class='fal fa-long-arrow-right'></i>"
-        ],
-    });
+    // // hero slider
+    // $('.hero-slider').owlCarousel({
+    //     loop: true,
+    //     nav: true,
+    //     dots: false,
+    //     margin: 0,
+    //     autoplay: true,
+    //     autoplayHoverPause: true,
+    //     autoplayTimeout: 5000,
+    //     items: 1,
+    //     navText: [
+    //         "<i class='fal fa-long-arrow-left'></i>",
+    //         "<i class='fal fa-long-arrow-right'></i>"
+    //     ],
+    // });
 
-    $('.hero-slider2').on('change.owl.carousel', function(event) {
-        new WOW().init();
-    });
+    // $('.hero-slider2').on('change.owl.carousel', function(event) {
+    //     new WOW().init();
+    // });
 
 
     // partner-slider

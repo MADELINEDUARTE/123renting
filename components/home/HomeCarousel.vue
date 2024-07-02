@@ -94,11 +94,11 @@
 <script setup>
     const { sliders } = useHome()
 
-    watch( sliders, ()=>{
-        // hero slider
-        
+    onMounted(()=>{
         (function ($) {
             "use strict";
+
+            console.log('carga car')
 
                 $('.hero-slider').owlCarousel({
                     loop: true,
@@ -114,7 +114,30 @@
                         "<i class='fal fa-long-arrow-right'></i>"
                     ],
                 });
+
             })(jQuery);
-        
     })
+    // watch( sliders, ()=>{
+    //     // hero slider
+        
+    //     (function ($) {
+    //         "use strict";
+
+    //             $('.hero-slider').owlCarousel({
+    //                 loop: true,
+    //                 nav: true,
+    //                 dots: false,
+    //                 margin: 0,
+    //                 autoplay: true,
+    //                 autoplayHoverPause: true,
+    //                 autoplayTimeout: 5000,
+    //                 items: 1,
+    //                 navText: [
+    //                     "<i class='fal fa-long-arrow-left'></i>",
+    //                     "<i class='fal fa-long-arrow-right'></i>"
+    //                 ],
+    //             });
+    //         })(jQuery);
+        
+    // })
 </script>

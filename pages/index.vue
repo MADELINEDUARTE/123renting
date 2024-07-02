@@ -2,8 +2,8 @@
 <LayoutWeb>
 <main class="main">
 <!-- hero slider -->
-<HomeCarousel/>
-
+<HomeCarousel v-if="sliders.length"/>
+{{ sliders.length }}
         <!-- hero slider end -->
 
 
@@ -680,6 +680,8 @@ import flotaHome from './../components/home/flotaHome.vue'
     import { reactive, ref, onMounted } from 'vue'
 
     const { locations } = useLocation()
+    const { sliders } = useHome()
+
 
     onNuxtReady(async () => {
         (function ($) {
