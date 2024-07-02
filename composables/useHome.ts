@@ -121,7 +121,7 @@ const home = {
         const idiomaMap: { [key: string]: number } = {
             "es": 1,
             "en": 2,
-            "cat": 3,
+            "ca": 3,
             "ger": 4,
         };
 
