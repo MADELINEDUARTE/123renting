@@ -46,9 +46,8 @@
     <div class="main-navigation">
         <nav class="navbar navbar-expand-lg">
             <div class="container custom-nav">
-                <a class="navbar-brand" href="#">
-                    <img src="/assets/img/logo/logoh.png" alt="logo">
-                </a>
+                <nuxt-link  class="navbar-brand" to="/">  <img src="/assets/img/logo/logoh.png" alt="logo"></nuxt-link> 
+                
                 <div class="mobile-menu-right">
                     <div class="header-account header-mobile-account">
                         <div class="dropdown">
@@ -56,7 +55,7 @@
                              <i class="far fa-user-circle"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
-                              <li><a class="dropdown-item" nuxt-link to="profile"><i class="far fa-user"></i>{{$t('perfil')}}</a></li>
+                                <li> <nuxt-link  class="dropdown-item" to="/profile"><i class="far fa-user"></i> {{$t('perfil')}} </nuxt-link>  </li>
                               <!-- <li><a class="dropdown-item" href="billing"><i class="far fa-clipboard-list"></i> {{$t('facturacion')}}</a></li> -->
                               <!-- <li><a class="dropdown-item" href="setting"><i class="far fa-cog"></i>{{$t('ajustes')}}</a></li> -->
                               <li><a class="dropdown-item" @click.prevent="onLogout" href="#"><i class="far fa-sign-out"></i>{{$t('cerrar_sesion')}}</a></li>
