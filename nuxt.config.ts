@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     secretToken: process.env.SECRET_TOKEN,
-    urlApi: 'https://123rentingespana.renthubsoftware.com',
+    urlApi: process.env.URL_API,
     urlApiAction: "https://dev.api.123renting.es",
     secretTokenAction: process.env.SECRET_TOKEN_ACTION,
     idiomaAction: process.env.IDIOMA_ACTION,
