@@ -124,7 +124,10 @@
         
         const lang = useCookie('lang')
 
-        let idioma = lang.value!=undefined ? lang.value : 'es'
+        const config = useRuntimeConfig()
+                
+        let idioma = lang.value != undefined ? lang.value :  home.idiomaInId(config.public.idiomaAction)
+
         locale.value = idioma;
 
         const homeActtionApi = await getHome({ id_idioma: home.idiomaToId(idioma) })
@@ -186,6 +189,7 @@
         (function ($) {
             "use strict";
             console.log('nuxtReady')
+
             // preloade
             /**
              * data-background 
@@ -245,6 +249,7 @@
 
         })(jQuery);
 
+        
     })
 
     

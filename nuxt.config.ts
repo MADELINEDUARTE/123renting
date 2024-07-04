@@ -5,8 +5,12 @@ export default defineNuxtConfig({
     urlApi: 'https://123rentingespana.renthubsoftware.com',
     urlApiAction: "https://dev.api.123renting.es",
     secretTokenAction: process.env.SECRET_TOKEN_ACTION,
-    idiomaAction: 1,
-    regionAction: 1
+    idiomaAction: process.env.IDIOMA_ACTION,
+    regionAction: process.env.REGION_ACTION,
+    public:{
+      idiomaAction: process.env.IDIOMA_ACTION,
+      regionAction: process.env.REGION_ACTION,
+    }
   },
   devServer: {
       host: '0.0.0.0',

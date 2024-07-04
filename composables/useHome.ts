@@ -117,7 +117,7 @@ const home = {
 
         this.data.status = true
     },
-     idiomaToId: function  (idioma: string): number  {
+    idiomaToId: function  (idioma: string): number  {
         const idiomaMap: { [key: string]: number } = {
             "es": 1,
             "en": 2,
@@ -126,7 +126,18 @@ const home = {
         };
 
         return idiomaMap[idioma] || 1; // Default to 1 if `idioma` is not found
-    }
+    },
+    idiomaInId: function  (idioma: number): string  {
+        const idiomaMap: { [key: number]: string } = {
+            1: "es",
+            2: "en",
+            3: "ca",
+            4: "ger",
+        };
+
+        return idiomaMap[idioma] || 'es'; // Default to 1 if `idioma` is not found
+    },
+    
 }
 
 const parametros  = computed((): Parametros=>{
