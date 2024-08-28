@@ -4,28 +4,27 @@
     <div class="hero-section">
         <div class="hero-slider owl-carousel owl-theme">
             
-            <div v-for="(slide , key) in sliders" :key="`slid${key}`" class="hero-single" :style="{backgroundImage: `url(${slide.url_imagen})`}" >
-               
-                <div class="container">
+            <div 
+                v-for="(slide , key) in sliders" 
+                :key="`slid${key}`" 
+                class="hero-single" 
+                :class="slide.url_videos ? 'hero-video':''"
+                :style="{backgroundImage: `url(${slide.url_imagen})`}" 
+                >
+                
+                    <iframe
+                        :src="`https://www.youtube.com/embed/${slide.url_videos}?autoplay=1&controls=0&loop=1&mute=1&rel=0&showinfo=0&autohide=1&modestbranding=1`"
+                        frameborder="0"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen
+                        v-if="slide.url_videos"
+                        ></iframe>
+             
+                <div v-else class="container">
                     <div class="row align-items-center">
                         <div class="col-md-9 col-lg-7">
                             <div class="hero-content">
                                <div v-html="slide.contenido"></div>
-                                <!-- <h6 class="hero-sub-title wow animate__animated animate__fadeInUp"
-                                    data-wow-duration="1s" data-wow-delay=".25s">{{$t('reserva_ahora')}}</h6>
-                                <h1 class="hero-title wow animate__animated animate__fadeInUp"
-                                    data-wow-duration="1s" data-wow-delay=".50s">
-                                    {{$t('viaja_sin_limites')}} <br>
-                                    <span>{{$t('r_123')}}</span><br>
-                                    {{$t('destino')}}
-                                </h1>
-                                <p class="wow animate__animated animate__fadeInUp" data-wow-duration="1s"
-                                    data-wow-delay=".75s">
-                                    {{$t('nuestra_flota')}}
-                                </p>
-                                <div class="hero-btn wow animate__animated animate__fadeInUp" data-wow-duration="1s"
-                                    data-wow-delay="1s">
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -87,6 +86,21 @@
             </div>
         </div>
     </div>
+    <!-- <h6 class="hero-sub-title wow animate__animated animate__fadeInUp"
+                                    data-wow-duration="1s" data-wow-delay=".25s">{{$t('reserva_ahora')}}</h6>
+                                <h1 class="hero-title wow animate__animated animate__fadeInUp"
+                                    data-wow-duration="1s" data-wow-delay=".50s">
+                                    {{$t('viaja_sin_limites')}} <br>
+                                    <span>{{$t('r_123')}}</span><br>
+                                    {{$t('destino')}}
+                                </h1>
+                                <p class="wow animate__animated animate__fadeInUp" data-wow-duration="1s"
+                                    data-wow-delay=".75s">
+                                    {{$t('nuestra_flota')}}
+                                </p>
+                                <div class="hero-btn wow animate__animated animate__fadeInUp" data-wow-duration="1s"
+                                    data-wow-delay="1s">
+                                </div> -->
     <!-- hero slider end -->
 </template>
 
@@ -141,3 +155,23 @@
         
     // })
 </script>
+
+<style lang="scss" scoped>
+.hero-video {
+  padding: 0px !important;
+
+  iframe {
+    width: 100%;
+
+    @media (min-width: 768px) {
+      height: 100vh; 
+    }
+
+    @media (max-width: 1024px) {
+      height: 60vh;
+    }
+  }
+}
+</style>
+
+
