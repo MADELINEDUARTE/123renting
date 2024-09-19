@@ -20,7 +20,7 @@
                         <h4 class="footer-widget-title">{{$t('conocenos')}}</h4>
                         <ul class="footer-list">
                             <li><a href="#nosotros123"><i class="fas fa-caret-right"></i>{{$t('nosotros')}}</a></li>
-                            <li><nuxt-link to="privacy"><i class="fas fa-caret-right"></i> {{$t('politica_privacidad')}}</nuxt-link></li>
+                            <li><nuxt-link to="privacy"><i class="fas fa-caret-right"></i> {{$t('terminos_condiciones')}}</nuxt-link></li>
                             <li><nuxt-link to="politicadecookies"><i class="fas fa-caret-right"></i> {{$t('politica_de_cookies')}}</nuxt-link></li> 
                         </ul>
                     </div>
@@ -66,7 +66,8 @@
                         <a :href="parametros.instagram"><i class="fab fa-instagram"></i></a>
                         <a :href="parametros.twitter"><i class="fab fa-twitter"></i></a>
                         <a :href="parametros.youtube"><i class="fa-brands fa-youtube"></i></a>
-                        <a :href="parametros.google"><i class="fa-brands fa-google"></i></a>
+                        <a :href="parametros.ubicacion_link"><i class="fa-solid fa-location-dot"></i></a>
+
 
                             
                         </div>

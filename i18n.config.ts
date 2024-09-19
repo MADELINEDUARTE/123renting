@@ -3,6 +3,7 @@ export default defineI18nConfig(() => ({
     locale: 'es',
     messages: {
         es: {
+            terminos_condiciones: 'Términos y condiciones',
             daily: 'día',
             correo: "info@123renting.es",
             horarios: 'Lunes a Domingo: 9:00 a.m. a 7:00 p.m.',
@@ -13,7 +14,7 @@ export default defineI18nConfig(() => ({
             inicio: 'Inicio',
             oficinas: 'Oficinas',
             flota: 'Flota',
-            necesitas_furgo: '¿Necesitas una furgoneta?',
+            necesitas_furgo: 'Llámanos:',
             telefono: 'Teléfono',
             direccion:"Dirección",
             reserva: 'Reserva',
@@ -119,7 +120,7 @@ export default defineI18nConfig(() => ({
             rapidos: 'Rápidos y seguros',
             sistema: 'Nuestro sistema de reserva es rápido y seguro, al igual que el proceso de entrega y recogida.',
             contactanos: 'Contáctanos',
-            llamanos: 'Llámanos al 650 31 07 07 o escríbenos por WhatsApp, y te guiaremos en el proceso de reserva.',
+            llamanos: 'Llámanos al {phone} o escríbenos por WhatsApp, y te guiaremos en el proceso de reserva.',
             detalle_furgo: 'Detalles del vehículo',
 
             dudas: '¿Tienes dudas?',
@@ -128,24 +129,28 @@ export default defineI18nConfig(() => ({
             preguntas: 'tus preguntas',
             sabemos: 'Sabemos que puedes tener muchas dudas al planificar tu mejor viaje, así que te ayudamos a resolverlas para que puedas disfrutarlo al máximo.',
 
-            como: '¿Cómo puedo hacer una reserva?',
-            facil: '¡Muy fácil! Puedes visitarnos en nuestras oficinas, en el sitio web o descargando nuestra aplicación. Estaremos encantados de ayudarte.',
+            "como": "¿Cómo puedo solicitar una reserva?",
+            "facil": "Lo puedes hacer a través de nuestra página web, por correo electrónico, por WhatsApp o llamándonos al +376 812 330 o acudiendo a nuestra oficina en la Avenida Sant Antoni 68, PB, La Massana, donde te atenderemos de lunes a viernes de 9h a 19h.",
 
-            necesito: '¿Qué necesito para hacer una reserva?',
-            necesitas: 'Solo necesitas tu documento de identificación.',
+            "necesito": "¿Puedo modificar o cancelar mi reserva?",
+            "necesitas": "Sí, puedes ampliar, reducir o cancelar tu reserva sin ningún problema.",
+
+            "puedo": "¿Cuál es el máximo de kilómetros que puedo hacer?",
+            "puedes": "No existe ningún límite de kilómetros.",
+
+            "puedo_recoger": "¿Qué documentos necesito para poder alquilar un vehículo?",
+            "principio": "Para poder alquilar un vehículo necesitas presentar un documento de identidad, permiso de residencia o similares, y el carnet de conducir de la persona que conducirá el vehículo.",
+
+            "circular": "¿Cuál es el mínimo de horas por las que puedo alquilar un vehículo?",
+            "circular_furgo": "El mínimo de horas que ofrecemos para reservar un vehículo es de 5 horas.",
+
+            "circular2": "¿Qué hago si tengo que devolver un vehículo y la oficina está cerrada?",
+            "circular_furgo2": "Si la oficina está cerrada, disponemos de un pequeño buzón de color gris al lado de la puerta donde puedes dejar las llaves del vehículo.",
+
+           
             carne: 'Licencia de conducir',
             mayor: 'Ser mayor de edad.',
             listo: '¡Y eso es todo, es muy fácil!',
-
-            puedo: '¿Puedo recoger la furgoneta en una oficina y devolverla en otra?',
-            puedes: 'Sí, puedes recoger tu furgoneta en una oficina y devolverla en otra, sin costo adicional.',
-
-            puedo_recoger: '¿Puedo recoger y devolver el vehículo en cualquier momento?',
-            principio: 'En principio, la furgoneta alquilada debe recogerse siempre durante el horario de oficina, que variará según la delegación de 123 RENTING donde se haya gestionado el alquiler.',
-
-            circular: '¿Puedo viajar fuera de España?',
-            circular_furgo: 'Si necesitas viajar con una de nuestras furgonetas fuera del territorio peninsular español, debes informarnos y estar autorizado por la oficina donde reservarás el vehículo al menos 72 horas antes y contratar la cobertura adicional de ASISTENCIA INTERNACIONAL.',
-
             testimonios: 'Testimonios de',
             que_dicen: '¿Qué dicen',
             clientes: 'nuestros clientes?',
@@ -270,7 +275,7 @@ export default defineI18nConfig(() => ({
             f: 'F. ',
             f_texto: '¿A quién debe contactar cuando tenga preguntas sobre el uso de sus cookies?',
             f_parrafoa: 'Si tiene alguna pregunta sobre el uso de cookies por parte de 123renting, comuníquese con:',
-            correo_info: 'info@123renting.es',
+            correo_info: '{email}',
             g: 'G.',
             g_texto: 'Cambios en esta política de cookies',
             g_parrafoa: 'Esta política de cookies fue modificada por última vez el 12 de enero de 2021.',
@@ -378,6 +383,7 @@ export default defineI18nConfig(() => ({
 
         },
         en: {
+            terminos_condiciones: 'Terms and conditions',
             daily: 'day',
             correo: 'email',
             horarios: 'Office Hours:',
@@ -388,7 +394,7 @@ export default defineI18nConfig(() => ({
             inicio: 'Home',
             oficinas: 'Offices',
             flota: 'Fleet',
-            necesitas_furgo: 'Do you need a van?',
+            necesitas_furgo: 'Call us:',
             telefono: 'Phone',
             direccion: 'Address',
             reserva: 'Reservation',
@@ -487,26 +493,35 @@ export default defineI18nConfig(() => ({
             rapidos: 'Fast and secure',
             sistema: 'Our reservation system is fast and secure, as well as the delivery and pick-up process.',
             contactanos: 'Contact us',
-            llamanos: 'Call us at 650 31 07 07 or write to us through WhatsApp, and we will guide you through the reservation process.',
+            llamanos: 'Call us at {phone} or write to us through WhatsApp, and we will guide you through the reservation process.',
             detalle_furgo: 'Vehicle details',
             dudas: 'Do you have doubts?',
             en123: 'At 123 RENTING',
             respondemos: 'We answer all',
             preguntas: 'your questions',
             sabemos: 'We know you may have many doubts when planning your trip, so we help you resolve them so you can enjoy it to the fullest.',
-            como: 'How can I make a reservation?',
-            facil: 'Very easy! You can visit us at our offices, on our website, or by downloading our app. We will be happy to help you.',
-            necesito: 'What do I need to make a reservation?',
-            necesitas: 'You only need your identification document.',
+            "como": "How can I request a reservation?",
+            "facil": "You can do it through our website, by email, via WhatsApp, or by calling us at +376 812 330, or by visiting our office at Avenida Sant Antoni 68, PB, La Massana, where we will assist you from Monday to Friday from 9am to 7pm.",
+
+            "necesito": "Can I modify or cancel my reservation?",
+            "necesitas": "Yes, you can extend, reduce, or cancel your reservation without any problem.",
+
+            "puedo": "What is the maximum number of kilometers I can drive?",
+            "puedes": "There is no limit on kilometers.",
+
+            "puedo_recoger": "What documents do I need to rent a vehicle?",
+            "principio": "To rent a vehicle, you need to present an identity document, a residence permit, or similar, and the driver's license of the person who will drive the vehicle.",
+
+            "circular": "What is the minimum number of hours I can rent a vehicle for?",
+            "circular_furgo": "The minimum number of hours we offer to rent a vehicle is 5 hours.",
+
+            "circular2": "What should I do if I need to return a vehicle and the office is closed?",
+            "circular_furgo2": "If the office is closed, we have a small gray mailbox next to the door where you can leave the vehicle keys.",
+          
+           
             carne: 'Driver\'s license',
             mayor: 'Be of legal age.',
             listo: 'And that\'s it, it\'s very easy!',
-            puedo: 'Can I pick up the van at one office and return it at another?',
-            puedes: 'Yes, you can pick up the van at one office and return it at another, with no additional cost.',
-            puedo_recoger: 'Can I pick up and return the vehicle at any time?',
-            principio: 'In principle, the rented van must be picked up during our business hours, which vary depending on the 123 RENTING delegation where the rental was managed.',
-            circular: 'Can I travel outside of Spain?',
-            circular_furgo: 'If you need to travel with one of our vans outside the Spanish mainland, you must inform us and obtain authorization from the office where you rented the vehicle at least 72 hours in advance and purchase the additional international coverage.',
             testimonios: 'Testimonials from',
             que_dicen: 'What our clients say:',
             clientes: 'our clients',
@@ -626,7 +641,7 @@ export default defineI18nConfig(() => ({
             f: 'F. ',
             f_texto: 'Who to contact if you have questions about the use of your cookies?',
             f_parrafoa: 'If you have any questions about 123renting\'s use of cookies, please contact:',
-            correo_info: 'info@123renting.es',
+            correo_info: '{email}',
             g: 'G.',
             g_texto: 'Changes to this cookies policy',
             g_parrafoa: 'This cookies policy was last modified on January 12, 2021.',
@@ -730,6 +745,7 @@ export default defineI18nConfig(() => ({
             
         },
         ca:{
+            terminos_condiciones: 'Termes i condicions',
             daily: "dia",
             correo: "correu",
             horarios: "Horari d'oficines:",
@@ -740,7 +756,7 @@ export default defineI18nConfig(() => ({
             inicio: "Inici",
             oficinas: "Oficines",
             flota: "Flota",
-            necesitas_furgo: "Necessites una furgoneta?",
+            necesitas_furgo: "Truca'ns:",
             "telefono": "Telèfon",
             "direccion": "Adreça",
             "reserva": "Reserva",
@@ -839,26 +855,37 @@ export default defineI18nConfig(() => ({
             "rapidos": "Ràpid i segur",
             "sistema": "El nostre sistema de reserva és ràpid i segur, així com el procés de lliurament i recollida.",
             "contactanos": "Contacta'ns",
-            "llamanos": "Truca'ns al 650 31 07 07 o escriu-nos a través de WhatsApp, i t'ajudarem amb el procés de reserva.",
+            "llamanos": "Truca'ns al {phone} o escriu-nos a través de WhatsApp, i t'ajudarem amb el procés de reserva.",
             "detalle_furgo": "Detalls del vehicle",
             "dudas": "Tens dubtes?",
             "en123": "A 123 RENTING",
             "respondemos": "Responem a totes",
             "preguntas": "les teves preguntes",
             "sabemos": "Sabem que pots tenir molts dubtes quan planifiques el teu viatge, així que t'ajudem a resoldre'ls perquè puguis gaudir-lo al màxim.",
-            "como": "Com puc fer una reserva?",
-            "facil": "Molt fàcil! Ens pots visitar a les nostres oficines, al nostre web o descarregant la nostra aplicació. Estarem encantats d'ajudar-te.",
-            "necesito": "Què necessito per fer una reserva?",
-            "necesitas": "Només necessites el teu document d'identitat.",
+            
+            "como": "Com puc sol·licitar una reserva?",
+            "facil": "Ho pots fer a travès de la nostra pàgina web, per correu electrònic, per whatsapp o trucant-nos al +376 812 330 o acudint a la nostra oficina a l’Avinguda Sant Antoni 68, PB, La massana on els atendrem de dilluns a divendres de 9h a 19h.",
+            
+            "necesito": "Puc modificar o cancel·lar la meva reserva?",
+            "necesitas": "Si, pots ampliar, reduïr o cancel·lar la teva reserva sense cap problema",
+
+            "puedo": "Quin es el màxim de quilòmetres que puc fer?",
+            "puedes": "No existeix cap límit de quilòmetres.",
+            
+            "puedo_recoger": "Quins documents necessito per poder llogar un vehicle?",
+            "principio": "Per poder llogar un vehicle necessites presentar un document d’identitat, permís de residència o similars i el carnet de conduir de la persona que conduirà el vehicle.",
+            
+            "circular": "Quin és el mínim d’hores en les que puc llogar un vehicle?",
+            "circular_furgo": "El mínim d’hores que oferim per reservar un vehicle es de 5 hores.",
+
+            "circular2": "Que faig si tinc que retornar un vehicle i la oficina està tancada?",
+            "circular_furgo2": "Si la oficina està tancada disposem d’una petita bústia de color gris al costat de la porta on podeu deixar allà les claus del vehicle.",
+            
             "carne": "Carnet de conduir",
             "mayor": "Ser major d'edat.",
             "listo": "I ja està, és molt fàcil!",
-            "puedo": "Puc recollir la furgoneta en una oficina i retornar-la en una altra?",
-            "puedes": "Sí, pots recollir la furgoneta en una oficina i retornar-la en una altra, sense cap cost addicional.",
-            "puedo_recoger": "Puc recollir i retornar el vehicle a qualsevol hora?",
-            "principio": "En principi, la furgoneta llogada s'ha de recollir durant el nostre horari d'atenció, que varia depenent de la delegació de 123 RENTING on s'hagi gestionat el lloguer.",
-            "circular": "Puc viatjar fora d'Espanya?",
-            "circular_furgo": "Si necessites viatjar amb una de les nostres furgonetes fora de la península espanyola, ens has d'informar i obtenir l'autorització de l'oficina on has llogat el vehicle amb almenys 72 hores d'antelació i contractar la cobertura internacional addicional.",
+            
+            
             "testimonios": "Testimonis de",
             "que_dicen": "Què diuen els nostres clients:",
             "clientes": "els nostres clients",
@@ -974,7 +1001,7 @@ export default defineI18nConfig(() => ({
             "f": "F. ",
             "f_texto": "A qui ha de contactar quan tingui preguntes sobre l'ús de les seves cookies?",
             "f_parrafoa": "Si té alguna pregunta sobre l'ús de cookies per part de 123renting, posi's en contacte amb:",
-            "correo_info": "info@123renting.es",
+            "correo_info": "{email}",
             "g": "G.",
             "g_texto": "Canvis en aquesta política de cookies",
             "g_parrafoa": "Aquesta política de cookies va ser modificada per última vegada el 12 de gener de 2021.",
@@ -1075,6 +1102,7 @@ export default defineI18nConfig(() => ({
             "modelo_marca": "Cerca Model o Marca"
         },
         ger:{
+            terminos_condiciones: 'Geschäftsbedingungen',
             daily: 'Tag',
             correo: 'E-Mail',
             horarios: 'Bürozeiten:',
@@ -1085,7 +1113,7 @@ export default defineI18nConfig(() => ({
             inicio: 'Startseite',
             oficinas: 'Büros',
             flota: 'Fahrzeugflotte',
-            necesitas_furgo: 'Benötigen Sie einen Lieferwagen?',
+            necesitas_furgo: 'Rufen Sie uns an:',
             telefono: 'Telefon',
             direccion: 'Adresse',
             reserva: 'Reservierung',
@@ -1184,26 +1212,34 @@ export default defineI18nConfig(() => ({
             rapidos: 'Schnell und sicher',
             sistema: 'Unser Reservierungssystem ist schnell und sicher, ebenso wie der Liefer- und Abholvorgang.',
             contactanos: 'Kontaktiere uns',
-            llamanos: 'Rufen Sie uns unter 650 31 07 07 an oder schreiben Sie uns über WhatsApp, und wir werden Sie durch den Reservierungsprozess führen.',
+            llamanos: 'Rufen Sie uns unter {phone} an oder schreiben Sie uns über WhatsApp, und wir werden Sie durch den Reservierungsprozess führen.',
             detalle_furgo: 'Fahrzeugdetails',
             dudas: 'Haben Sie Zweifel?',
             en123: 'Bei 123 RENTING',
             respondemos: 'Wir beantworten alle',
             preguntas: 'Ihre Fragen',
             sabemos: 'Wir wissen, dass Sie viele Zweifel haben können, wenn Sie Ihre Reise planen. Daher helfen wir Ihnen, diese zu lösen, damit Sie sie in vollen Zügen genießen können.',
-            como: 'Wie kann ich eine Reservierung vornehmen?',
-            facil: 'Sehr einfach! Sie können uns in unseren Büros, auf unserer Website oder durch Herunterladen unserer App besuchen. Wir helfen Ihnen gerne weiter.',
-            necesito: 'Was brauche ich, um eine Reservierung vorzunehmen?',
-            necesitas: 'Sie benötigen nur Ihren Ausweis.',
+            "como": "Wie kann ich eine Reservierung beantragen?",
+            "facil": "Sie können dies über unsere Website, per E-Mail, per WhatsApp oder telefonisch unter +376 812 330 tun oder uns in unserem Büro in der Avenida Sant Antoni 68, PB, La Massana besuchen, wo wir Sie von Montag bis Freitag von 9 Uhr bis 19 Uhr betreuen.",
+          
+            "necesito": "Kann ich meine Reservierung ändern oder stornieren?",
+            "necesitas": "Ja, Sie können Ihre Reservierung ohne Probleme verlängern, verkürzen oder stornieren.",
+          
+            "puedo": "Was ist die maximale Anzahl an Kilometern, die ich fahren kann?",
+            "puedes": "Es gibt keine Kilometerbegrenzung.",
+          
+            "puedo_recoger": "Welche Dokumente benötige ich, um ein Fahrzeug zu mieten?",
+            "principio": "Um ein Fahrzeug zu mieten, müssen Sie einen Ausweis, eine Aufenthaltserlaubnis oder ähnliches und den Führerschein der Person vorlegen, die das Fahrzeug fahren wird.",
+          
+            "circular": "Wie viele Stunden beträgt die Mindestmietdauer für ein Fahrzeug?",
+            "circular_furgo": "Die Mindestmietdauer für ein Fahrzeug beträgt 5 Stunden.",
+          
+            "circular2": "Was soll ich tun, wenn ich ein Fahrzeug zurückgeben muss und das Büro geschlossen ist?",
+            "circular_furgo2": "Wenn das Büro geschlossen ist, haben wir einen kleinen grauen Briefkasten neben der Tür, in den Sie die Fahrzeugschlüssel einwerfen können.",
+           
             carne: 'Führerschein',
             mayor: 'Volljährig sein.',
             listo: 'Und das ist alles, es ist sehr einfach!',
-            puedo: 'Kann ich den Lieferwagen an einem Büro abholen und an einem anderen zurückgeben?',
-            puedes: 'Ja, Sie können den Lieferwagen an einem Büro abholen und an einem anderen zurückgeben, ohne zusätzliche Kosten.',
-            puedo_recoger: 'Kann ich das Fahrzeug zu jeder Zeit abholen und zurückgeben?',
-            principio: 'Im Prinzip muss der gemietete Lieferwagen während unserer Geschäftszeiten abgeholt werden, die je nach der 123 RENTING-Delegation variieren, in der die Vermietung abgewickelt wurde.',
-            circular: 'Kann ich außerhalb von Spanien reisen?',
-            circular_furgo: 'Wenn Sie mit einem unserer Lieferwagen außerhalb des spanischen Festlandes reisen müssen, müssen Sie uns informieren und die Genehmigung vom Büro einholen, in dem Sie das Fahrzeug gemietet haben, mindestens 72 Stunden im Voraus und die zusätzliche internationale Abdeckung erwerben.',
             testimonios: 'Testimonials von',
             que_dicen: 'Was unsere Kunden sagen:',
             clientes: 'unsere Kunden',
@@ -1323,7 +1359,7 @@ export default defineI18nConfig(() => ({
             f: 'F. ',
             f_texto: 'An wen wenden Sie sich, wenn Sie Fragen zur Verwendung Ihrer Cookies haben?',
             f_parrafoa: 'Wenn Sie Fragen zur Verwendung von Cookies durch 123renting haben, wenden Sie sich bitte an:',
-            correo_info: 'info@123renting.es',
+            correo_info: '{email}',
             g: 'G.',
             g_texto: 'Änderungen dieser Cookie-Richtlinie',
             g_parrafoa: 'Diese Cookie-Richtlinie wurde zuletzt am 12. Januar 2021 geändert.',

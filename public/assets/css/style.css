@@ -2086,7 +2086,7 @@ testimonial css
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     z-index: 1;
 }
 
@@ -2097,7 +2097,7 @@ testimonial css
     top: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, .85);
+    background: rgba(0, 0, 0, .6);
     z-index: -1;
 }
 
@@ -5953,8 +5953,8 @@ car css
 
 .darkmode .log2oscuro {
     display: block;
-    height: 120px;
-    width: 200px;
+    /* height: 120px; */
+    /* width: 200px; */
 }
 
 .darkmode .log1blanco {

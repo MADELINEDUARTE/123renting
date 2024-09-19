@@ -37,7 +37,7 @@
                         <a :href="parametros.instagram"><i class="fab fa-instagram"></i></a>
                         <a :href="parametros.twitter"><i class="fab fa-twitter"></i></a>
                         <a :href="parametros.youtube"><i class="fa-brands fa-youtube"></i></a>
-                        <a :href="parametros.google"><i class="fa-brands fa-google"></i></a>
+                        <a :href="parametros.ubicacion_link"><i class="fa-solid fa-location-dot"></i></a>
                     </div>
                 </div>
             </div>

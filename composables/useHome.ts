@@ -18,6 +18,7 @@ interface Parametros {
     email?: string;
     direccion?: string;
     ubicacion?: string;
+    ubicacion_link?: string;
     facebook?: string;
     twitter?: string;
     instagram?: string;
@@ -77,6 +78,7 @@ const initialResult: Data = {
         email: "",
         direccion: "",
         ubicacion: "",
+        ubicacion_link: "",
         facebook: "",
         twitter: "",
         instagram: "",

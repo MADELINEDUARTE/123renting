@@ -9,5 +9,8 @@
 </LayoutWeb>
 </template>
 <script setup>
+    onMounted(()=>{
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
     const { parametros } = useHome()
 </script>

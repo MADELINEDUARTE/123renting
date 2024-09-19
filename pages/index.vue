@@ -244,7 +244,7 @@
                             <i class="fa-thin fa-phone-volume"></i>
                         </div>
                         <h4>{{$t('contactanos')}}</h4>
-                        <p>{{$t('llamanos')}}</p>
+                        <p>{{$t('llamanos',{ phone: parametros.telefono })}}</p>
                     </div>
                 </div>
             </div>
@@ -356,10 +356,7 @@
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    {{$t('necesitas')}} <br>
-                                    {{$t('carne')}}<br>
-                                    {{$t('mayor')}}<br>
-                                    {{$t('listo')}}
+                                    {{$t('necesitas')}}
                                 </div>
                             </div>
                         </div>
@@ -379,15 +376,15 @@
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingFour">
+                            <h2 class="accordion-header" id="headingS">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFour" aria-expanded="false"
-                                    aria-controls="collapseFour">
+                                    data-bs-target="#collapseS" aria-expanded="false"
+                                    aria-controls="collapseS">
                                     <span><i class="far fa-question"></i></span>{{$t('puedo_recoger')}}
                                 </button>
                             </h2>
-                            <div id="collapseFour" class="accordion-collapse collapse"
-                                aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                            <div id="collapseS" class="accordion-collapse collapse"
+                                aria-labelledby="headingS" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     {{$t('principio')}}
                                 </div>
@@ -404,6 +401,20 @@
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     {{$t('circular_furgo')}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    <span><i class="far fa-question"></i></span>{{$t('circular2')}}
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    {{$t('circular_furgo2')}}
                                 </div>
                             </div>
                         </div>
@@ -678,7 +689,7 @@ import flotaHome from './../components/home/flotaHome.vue'
 
     const { locations } = useLocation()
     const { sliders } = useHome()
-
+    const { parametros } = useHome()
 
     onNuxtReady(async () => {
         (function ($) {
