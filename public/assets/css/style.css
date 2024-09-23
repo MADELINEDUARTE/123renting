@@ -5555,10 +5555,9 @@ body.darkmode {
     .darkmode #bdark {
         color: #E94B28!important;
     }
-}
-
-.nav-item {
-    height: 50px!important;
+    .nav-item {
+        height: 50px!important;
+    }
 }
 
 .darkmode .navbar.fixed-top {
