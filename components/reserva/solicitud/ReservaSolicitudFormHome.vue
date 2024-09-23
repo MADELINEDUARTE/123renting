@@ -3,19 +3,26 @@
         <div class="container">
             <div class="find-car-form" :class="statusOpen ? 'px-0':''">
                 <div class="d-flex justify-content-between" :class="statusOpen ? 'mb-4':''">
-                    <div class="d-flex justify-center flex-column ">
+                    
+                    
+
+                    <div  class="d-flex justify-center flex-column ">
                         <h4 class="find-car-title m-0">{{$t('encuentra')}}</h4>
                         <p v-if="statusOpen">
                             {{$t('completainformacion')}}</p>
                     </div>
+
+                    
+
                     <div @click="onOpen" v-if="statusOpen" class="d-flex justify-center align-items-center p-3">
-                        <i class="fa fa-times" style="color: white;font-size: 20px;"></i>
+                        <i class="fa fa-times iconTimes" style="font-size: 20px;"></i>
                     </div>
                 </div>
 
                 <form @click="onOpenaLL" action="#">
 
                     <div v-if="detectDeviceType() =='isDesktop'">
+                        
                         <div v-if="statusOpen"  class="col-12 d-flex mb-4" :class="paso > 1 ? 'justify-content-between':'justify-content-end'">
                             <button type="button" v-if="paso > 1" @click="onOpen" class="theme-btn w-auto py-2 m-0">{{$t('volver')}}</button>
                             <button :disabled="loading" type="button" v-if="paso < 2" @click="siguiente(paso+1)" class="theme-btn w-auto py-2 m-0">
@@ -27,8 +34,21 @@
                         </div>
                     </div>
 
+                        <div class="mb-2" v-if="paso == 2">
+                            <div class="card car-item shadow-none border border-secondary m-0 mb-3 p-2">
+                                <div class="carbody car-content">
+                                    <p><b>{{ locations.data.find( e => reserva.recogida.oficina_id).name }} - {{ locations.data.find( e => reserva.devolucion.oficina_id).name }}</b></p>
+                                    <p>{{ moment(reserva.recogida.fecha.date).format('ll') }} | {{ reserva.recogida.fecha.time }} - {{ moment(reserva.devolucion.fecha.date).format('ll') }} | {{ reserva.recogida.fecha.time }}</p>
+                                </div>
+                            </div>
+                        </div>
+
                     <Transition>
                         <div class="row" v-if="paso == 1">
+                            
+                            <filterCampoType />
+                            
+
                             <ReservaPasosOficina 
                                 :status_open="statusOpen" 
                                 :oficinas="locations.data" 
@@ -70,26 +90,22 @@
                         <div class="row" v-if="paso == 2">
                             <ReservaPasosCoches 
                                 :status_open="statusOpen"
-                                :textos="{
-                                    number: '3.',
-                                    text: 'Elige un coche seleccionando el plan que prefieras.'
-                                }"
+                                :textos="textoplan"
                                 v-model:price_id="reserva.coche.plan_id"
                                 v-model:vehicle_id="reserva.coche.coche_id"
+                                @reload="getFlota"
                             />
                             
                             <ReservaPasosResumen 
                                 class="col-12 col-sm-8"
-                                :textos="{
-                                    number: '4.',
-                                    text: 'Resumen de la reserva.'
-                                }"
+                                :textos="textresumen"
                                 v-show="reserva.coche.coche_id"
                                 v-model:plan_id="reserva.coche.plan_id"
                                 :coche="vehicles.data.result.vehicles.find( e => e.model_id == reserva.coche.coche_id)"
                                 :reserva_devolucion="reserva.devolucion"
                                 :currency="vehicles.data.result.common.currency"
                             />
+                            
                             <ReservaPasosConfirmacion v-if="reserva.coche.coche_id && reserva.coche.plan_id" @finalizar="onOpen"/>
                         </div>
                     </Transition>
@@ -112,11 +128,20 @@
 </template>
 
 <script setup lang="ts">
+    import filterCampoType from '~/components/home/filterCampoType.vue'
 
     const { vehicles } = useReserva()
     import moment from 'moment';
     const { reserva } = useReserva()
 
+    const textoplan = {
+        number: '3.',
+        text: 'Elige un coche seleccionando el plan que prefieras.'
+    }
+    const textresumen = {
+        number: '4.',
+        text: 'Resumen de la reserva.'
+    }
     const detectDeviceType = () => {
         try {
             const width = window.innerWidth;
@@ -128,11 +153,10 @@
         } catch (error) {
             
         }
-
-        // const width = window.innerWidth;
-        
-        
+        // const width = window.innerWidth;    
     }    
+
+
 
     //CONTROLA LA APERTURA Y EL CIERRE DEL MODAL
 
@@ -155,7 +179,6 @@
             $('html')[0].style.overflow = ''
         }  
     }
-
 
     const onOpenaLL = () => {
         if(!statusOpen.value){
@@ -198,24 +221,28 @@
 
     const { locations } = useLocation()
     
-
     // CONTTROL DE RESERVA
 
-    // watch(reserva.recogida,(to)=>{
-    //     const response = getFlota()
-    // })
-    // watch(reserva.devolucion,(to)=>{
-    //     const response = getFlota()
-    // })
+    ////////////////////////
+    // GET FLOTA
+
+    const { filterValues, loadingForFilter } = useFilter()
 
     const getFlota = async () => {
 
+        loadingForFilter.value = true
         const vehiclesApi = await getVehicles()
         
         vehicles.setData(vehiclesApi)
-
+        loadingForFilter.value = false
         return vehicles.data
     }
+
+    
+
+    watch( filterValues.value , async ()=>{
+        await getFlota()
+    })
 
     async function getVehicles(){
         try {
@@ -229,7 +256,10 @@
 
             const queryParams = new URLSearchParams(parametrosBusqueda as any).toString();
 
-            const { data } =  await useFetch(`/api/vehicles?${queryParams}`)
+            const queryParamsFilter = new URLSearchParams(filterValues.value as any).toString();
+            // console.log('queryParamsFilter',queryParamsFilter)
+
+            const { data } =  await useFetch(`/api/vehicles?${queryParams}&${queryParamsFilter}`)
 
             // console.log(data.value)
             if (data.value) {
@@ -317,6 +347,20 @@
             background-color: #555;
             }
 
+        }
+    }
+    .iconTimes{
+            color: white;
+            cursor: pointer;
+        }
+    .darkmode{
+        .find-car{
+            &.fullscreen{
+                background: #ffffff;
+            }
+        }
+        .iconTimes{
+            color: #000000;
         }
     }
     .col-paso{

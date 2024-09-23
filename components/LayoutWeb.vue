@@ -107,6 +107,63 @@
             return null;
         }
     };
+
+    async function getTypes(){
+        try {
+            const { data } =  await useFetch('/api/vehicles/types')
+            if (data.value) {
+                return data.value 
+            } else {
+                console.error('No se pudo obtener el token.');
+            }
+        } catch (error) {
+            console.error('Error en el manejador de eventos:', error);
+            return null;
+        }
+    };
+
+    async function getCategories(){
+        try {
+            const { data } =  await useFetch('/api/vehicles/categories')
+            if (data.value) {
+                return data.value 
+            } else {
+                console.error('No se pudo obtener el token.');
+            }
+        } catch (error) {
+            console.error('Error en el manejador de eventos:', error);
+            return null;
+        }
+    };
+
+    async function getfuelTypes(){
+        try {
+            const { data } =  await useFetch('/api/vehicles/fuelTypes')
+            if (data.value) {
+                return data.value 
+            } else {
+                console.error('No se pudo obtener el token.');
+            }
+        } catch (error) {
+            console.error('Error en el manejador de eventos:', error);
+            return null;
+        }
+    };
+
+    async function gettrasnmissionTypes(){
+        try {
+            const { data } =  await useFetch('/api/vehicles/transmissionTypes')
+            if (data.value) {
+                return data.value 
+            } else {
+                console.error('No se pudo obtener el token.');
+            }
+        } catch (error) {
+            console.error('Error en el manejador de eventos:', error);
+            return null;
+        }
+    };
+    
     
     const parametros = ref()
     const { home, sliders } = useHome()
@@ -141,8 +198,15 @@
         const vehiclesApi = await getVehicles()
 
         vehicles.setData(vehiclesApi)
-        
-        // console.log('Mounted')
+
+        const types = await getTypes()
+        const categories = await getCategories();
+        const fuelTypes = await getfuelTypes();
+        const transmissionTypes = await gettrasnmissionTypes();
+
+        const { data } = useFilter()
+
+        data.setDatos({ types, categories, fuelTypes, transmissionTypes })
 
         // (function ($) {
         //     "use strict";

@@ -1,4 +1,11 @@
 <template>
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <FilterVehicles />
+            </div>
+        </div>
+    </div> -->
     <div v-show="vehiclesData.length" class="car-area bg py-120" id="flota">
         <div class="container">
             <div class="row">
@@ -12,6 +19,7 @@
             </div>
             
             <div class="row">
+                
                 
                 <div v-for="(item, key) in vehiclesData" :key="`vehicle-${key}`" class="col-lg-6 col-xl-4" >
                     <div class="car-item">
@@ -107,8 +115,12 @@
 </template>
 
 <script setup>
+import FilterVehicles from './filterVehicles.vue';
+
 
     const { vehicles } = useVehicle()
+
+    
 
     const vehiclesData = computed(()=>{
         return vehicles.data.result.vehicles
@@ -119,11 +131,34 @@
     })
 
     const getPrecios = (pricelists) => {
-
         const precios = pricelists.filter((price) => price.fee_type == 'daily')
-
         return precios.reverse()
     }
+
+
+    // const { data, filterValues, filter } = useFilter()
+
+   
+
+    // const filterValues = ref({
+    //     doors: '',
+    //     max_people: '',
+    //     maxPrice: 0
+    // })
+
+    onMounted( async () => {
+        
+        // filter.types = await getTypes()
+        // filter.categories = await getCategories()
+        // filter.fuelTypes = await getfuelTypes()
+        // filter.transmissionTypes = await gettrasnmissionTypes()
+
+    })
+
+    
+
+   
+
 
 </script>
 
@@ -135,5 +170,18 @@
         color: red!important;
     }
    
+}
+
+.input-filter{
+        color: white;  
+        font-size:18px;
+        padding: 3px; 
+    }
+
+.darkmode{
+
+    .input-filter{
+        color: black;   
+    }
 }
 </style>

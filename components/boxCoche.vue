@@ -1,9 +1,10 @@
 <template>
-    <div class="car-item w-100 m-0">
+    <div class="car-item w-100 m-0 mb-3">
         <div  v-if="coche" class="car-content">
-            <div class="car-top">
-                <h4><a class="letrac" href="#">{{ coche.model_details.name }} <br>
-                <h6 class="modelo">{{ coche.model_details.model }}</h6></a></h4>
+            <div class="car-top flex-column align-items-start">
+                <h4><a class="letrac" href="#">{{ coche.model_details.name }}</a> </h4>
+                <h6 class="modelo">{{ coche.model_details.model }} <br><small class="">{{ coche.model_details.category_name }}</small></h6>
+                
                 <!-- <br> -->
         
                 <!--<span><i class="fas fa-star"></i> 5.0</span>-->
@@ -15,8 +16,8 @@
         
             <ul class="car-list">
                 <!-- <li><img src="/assets/img/car/euro.png" class="far fa-car">{{$t('precio_d')}}&nbsp;&nbsp;</li> -->
-                <li><img src="/assets/img/car/pasajeros.png"  class="far fa-user-tie">  {{ coche.model_details.max_people }} {{$t('personas')}}&nbsp;</li>
-                <li><img src="/assets/img/car/puerta.png" class="far fa-gas-pump"> {{ coche.model_details.doors }} {{$t('puertas')}}</li>
+                <li class="pe-3"><img src="/assets/img/car/pasajeros.png"  class="far fa-user-tie me-1">  {{ coche.model_details.max_people }} {{$t('personas')}}&nbsp;</li>
+                <li class="pe-3"><img src="/assets/img/car/puerta.png" class="far fa-gas-pump me-1"> {{ coche.model_details.doors }} {{$t('puertas')}}</li>
                 <!-- <li><i class="far fa-road"></i>10.15km / 1-litre</li>
                 <li><i class="far fa-steering-wheel"></i>Automatic</li> -->
             </ul>

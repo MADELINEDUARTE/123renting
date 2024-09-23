@@ -691,6 +691,10 @@ import flotaHome from './../components/home/flotaHome.vue'
     const { sliders } = useHome()
     const { parametros } = useHome()
 
+    onMounted(()=>{
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+
     onNuxtReady(async () => {
         (function ($) {
             "use strict";

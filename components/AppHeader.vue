@@ -50,15 +50,18 @@
                 
                 <div class="mobile-menu-right">
                     <div class="header-account header-mobile-account">
-                        <div class="dropdown">
+                        <div class="dropdown d-flex">
+                           <DarkMode class="me-3"/>
+                            <!-- <BottonLanguage class="me-3" />
                             <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
                              <i class="far fa-user-circle"></i>
-                            </button>
+                            </button> -->
+                            
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li> <nuxt-link  class="dropdown-item" to="/profile"><i class="far fa-user"></i> {{$t('perfil')}} </nuxt-link>  </li>
                               <!-- <li><a class="dropdown-item" href="billing"><i class="far fa-clipboard-list"></i> {{$t('facturacion')}}</a></li> -->
                               <!-- <li><a class="dropdown-item" href="setting"><i class="far fa-cog"></i>{{$t('ajustes')}}</a></li> -->
-                              <li><a class="dropdown-item" @click.prevent="onLogout" href="#"><i class="far fa-sign-out"></i>{{$t('cerrar_sesion')}}</a></li>
+                              <li v-if="auth" ><a class="dropdown-item" @click.prevent="onLogout" href="#"><i class="far fa-sign-out"></i>{{$t('cerrar_sesion')}}</a></li>
                             </ul>
                           </div>
                     </div>
@@ -98,7 +101,7 @@
                                   <li> <nuxt-link  class="dropdown-item" to="/profile"><i class="far fa-user"></i> {{$t('perfil')}} </nuxt-link>  </li>
                                   <!-- <li><a class="dropdown-item" href="billing"><i class="far fa-clipboard-list"></i>{{$t('facturacion')}}</a></li>
                                   <li><a class="dropdown-item" href="setting"><i class="far fa-cog"></i> {{$t('ajustes')}}</a></li> -->
-                                  <li><a @click.prevent="onLogout" class="dropdown-item" href="#"><i class="far fa-sign-out"></i>{{$t('cerrar_sesion')}}</a></li>
+                                  <li v-if="auth" ><a @click.prevent="onLogout" class="dropdown-item" href="#"><i class="far fa-sign-out"></i>{{$t('cerrar_sesion')}}</a></li>
                                 </ul>
                               </div>
                         </div>

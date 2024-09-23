@@ -56,9 +56,17 @@ async function getVehicles(event: any): Promise<ApiResponse | null> {
         dropoff_location: query && query.dropoff_location ?  query.pickup_location : 1,
         start_datetime: query && query.start_datetime ? query.start_datetime : getFechasDefault().formattedStartDatetime,
         end_datetime: query && query.end_datetime ? query.end_datetime : getFechasDefault().formattedEndDatetime,
+        // doors: query.doors || '',
+        // max_people: query.max_people || '',
+        transmission: query.transmission || '',
+        type: query.type || '',
+        category: query.category || '',
+        fuel_type: query.fuel_type || '',
     }
 
     const queryParams = new URLSearchParams(parametrosBusqueda as any).toString();
+
+
 
     const response = await $fetch<ApiResponse>(`${config.urlApi}/module/rental/api/partner/vehicle/availability?${queryParams}`,{
         headers: {
