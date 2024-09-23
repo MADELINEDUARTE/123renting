@@ -86,7 +86,7 @@
                             </div>
                             <div class="header-phone-content">
                                 <span>{{$t('necesitas_furgo')}}</span>
-                                <h5 class="header-phone-number"><a href="tel:+2123654789">{{ parametros.telefono }}</a></h5>
+                                <h5 class="header-phone-number"><a href="#">{{ parametros.telefono }}</a></h5>
                             </div>
                         </div>
                         <div class="header-btn mt-2">
