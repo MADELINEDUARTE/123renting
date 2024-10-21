@@ -80,7 +80,12 @@ export default defineNuxtConfig({
         { src: '/assets/js/jquery-ui.min.js',  },
         { src: '/assets/js/jquery.timepicker.min.js',  },
         { src: '/assets/js/wow.min.js',  },
-        { src: '/assets/js/main.js', }
+        { src: '/assets/js/main.js', },
+        {
+          src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902445689940188",
+          async: true,
+          crossorigin: "anonymous"
+        }
       ]
     },
   },
