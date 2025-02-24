@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     public:{
       idiomaAction: process.env.IDIOMA_ACTION,
       regionAction: process.env.REGION_ACTION,
-      // gtmContainerId: '', // set NUXT_PUBLIC_GTM_CONTAINER_ID in .env file
+      namePage: process.env.NAME_PAGE,
       gtmContainerId1: process.env.GTM_CONTAINER_ID1, // Primer contenedor GTM
       gtmContainerId2: process.env.GTM_CONTAINER_ID2,
     }
