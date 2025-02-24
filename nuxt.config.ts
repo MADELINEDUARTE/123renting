@@ -10,6 +10,9 @@ export default defineNuxtConfig({
     public:{
       idiomaAction: process.env.IDIOMA_ACTION,
       regionAction: process.env.REGION_ACTION,
+      // gtmContainerId: '', // set NUXT_PUBLIC_GTM_CONTAINER_ID in .env file
+      gtmContainerId1: process.env.GTM_CONTAINER_ID1, // Primer contenedor GTM
+      gtmContainerId2: process.env.GTM_CONTAINER_ID2,
     }
   },
   devServer: {
@@ -17,9 +20,13 @@ export default defineNuxtConfig({
       port: 3000
   },
   devtools: { enabled: true },
-  modules: [
-    '@nuxtjs/i18n',
-  ],
+  modules: ['@nuxtjs/i18n', 'nuxt-gtag'],
+  gtag: {
+    id: 'G-70LPTXQ1HZ',
+    config: {
+      page_title: '123Renting'
+    },
+  },
   i18n: {
     vueI18n: './i18n.config.ts' // if you are using custom path, default 
   },
@@ -31,6 +38,7 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: '123Renting empresa con el mejor precio del mercado en alquiler de vehiculo o coches' },
         { name: 'msapplication-TileColor', content: '#FFFFFF' },
+        { name: 'keywords', content: '123renting, alquiler furgonetas, alquiler furgonetas valencia, furgonetas de alquiler, alquiler de furgonetas baratas, furgonetas 123renting, alquiler furgonetas madrid, renting coches, furgonetas segunda mano, coches segunda mano, coches ocasión, coches baratos, Audi, Bmw, Mercedes Benz, Tesla, Porsche' },
         // { name: 'msapplication-TileImage', content: '/favicons/ms-icon-144x144.png' },
         // PWA primary color
         { name: 'theme-color', content: '#E94B28'},
@@ -40,23 +48,23 @@ export default defineNuxtConfig({
         { property: 'og:locale', content: 'en_US' },
         { property: 'og:type', content: 'website' },
         // Twitter
-        { property: 'twitter:site', content: '123renting.ad' },
-        { property: 'twitter:domain', content: '123renting.ad' },
+        { property: 'twitter:site', content: '123renting.es' },
+        { property: 'twitter:domain', content: '123renting.es' },
         { property: 'twitter:creator', content: '123renting' },
         { property: 'twitter:card', content: 'summary' },
         { property: 'twitter:image:src', content: 'assets/img/logo/logoh.png' },
-        { property: 'og:url', content: '123renting.ad' },
-        { property: 'og:title', content: '123renting.ad' },
-        { property: 'og:description', content: '123renting.ad' },
-        { name: 'twitter:site', content: '123renting.ad' },
+        { property: 'og:url', content: '123renting.es' },
+        { property: 'og:title', content: '123renting.es' },
+        { property: 'og:description', content: '123renting.es' },
+        { name: 'twitter:site', content: '123renting.es' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:image', content: '123renting.ad' },
+        { name: 'twitter:image', content: '123renting.es' },
         { property: 'og:image', content: 'assets/img/logo/logoh.png' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' }
       ],
       link: [
-        { rel: 'canonical', href: 'https://123renting.ad' },
+        { rel: 'canonical', href: 'https://123renting.es' },
         { rel: 'stylesheet', href: '/assets/css/all-fontawesome.min.css' },
         { rel: 'stylesheet', href: '/assets/css/animate.min.css' },
         { rel: 'stylesheet', href: '/assets/css/magnific-popup.min.css' },
@@ -85,7 +93,7 @@ export default defineNuxtConfig({
           src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902445689940188",
           async: true,
           crossorigin: "anonymous"
-        }
+        },
       ]
     },
   },
