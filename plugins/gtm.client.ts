@@ -8,6 +8,8 @@ export default defineNuxtPlugin(nuxtApp => {
     const gtmContainers = [gtmContainerId1, gtmContainerId2].filter(Boolean);
 
     gtmContainers.forEach(gtmContainerId => {
+      if (!gtmContainerId) return; // Validación para gtmContainerId vacío
+
       useHead({
         script: [
           {
