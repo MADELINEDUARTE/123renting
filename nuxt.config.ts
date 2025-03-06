@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       namePage: process.env.NAME_PAGE,
       gtmContainerId1: process.env.GTM_CONTAINER_ID1, // Primer contenedor GTM
       gtmContainerId2: process.env.GTM_CONTAINER_ID2,
+      gtmContainerId3: process.env.GTM_CONTAINER_ID3,
     }
   },
   devServer: {
@@ -99,8 +100,10 @@ export default defineNuxtConfig({
   },
   webpack:{
     plugins: [
+      '~/plugins/gtm-new.client.ts',
+      '~/plugins/gtm.client.ts',
       { src: '/assets/js/jquery-3.6.0.min.js', ssr: false },
-      // { src: '~/plugins/Vue3Lottie.client', mode: 'client' },
+        // { src: '~/plugins/Vue3Lottie.client', mode: 'client' },
     ]
   },
   experimental: {
