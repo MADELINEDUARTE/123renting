@@ -4,6 +4,8 @@ export default defineNuxtPlugin(nuxtApp => {
     public: { gtmContainerId3 },
   } = useRuntimeConfig()
 
+  if (!gtmContainerId3) return; 
+
   // Insertar el script de Google Tag Manager en el <head>
   useHead({
     script: [
